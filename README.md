@@ -34,8 +34,21 @@ Type in cmd/PowerShell:
   
  - MacOS: No trouble up to now
   
-## Training  <!--- TODO --> 
-[CK data set](http://www.pitt.edu/~emotion/ck-spread.htm) 
+## Training  
+[CK data set info page](http://www.pitt.edu/~emotion/ck-spread.htm) 
+
+1. Fill the CK and CK+ DATABASE USER AGREEMENT form to receive a download link using the network of your currently 
+enrolled university
+[CK and CK+ DATABASE USER AGREEMENT](http://www.consortium.ri.cmu.edu/ckagree/)
+2. Check your E-Mails
+3. Login and download either only CK or both data bases <!--- TODO check which set -->
+4. Extract the data set 
+5. Alter config.py, train_config.py and test_config.py accordingly
+6. run `python runners.py train`
+
+## Prediction
+
+## Evaluation and Experiments
 
 
 ## TODO
@@ -49,7 +62,7 @@ Type in cmd/PowerShell:
 #### Prio 2:
 - test all models & fix bugs
 - Update DocStrings & README.md
-- include [deep visualization toolbox](https://github.com/yosinski/deep-visualization-toolbox)
+- include [Deep Visualization Toolbox for Tensorflow](https://github.com/InFoCusp/tf_cnnvis)
 
 #### Prio 3:
 - Implement StackGANEmoPy
