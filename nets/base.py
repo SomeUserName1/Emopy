@@ -7,7 +7,7 @@ from keras.models import Sequential, model_from_json
 
 from loggers.base import EmopyLogger
 from test_config import MODEL_PATH
-from train_config import LOG_DIR, PATH2SAVE_MODELS
+from train_config import LOG_DIR, PATH2SAVE_MODELS, DATA_SET_DIR
 
 
 # TODO Add PReLU, pooling, BN, look at capsule/merge

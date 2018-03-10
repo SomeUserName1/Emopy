@@ -28,7 +28,7 @@ class LSTMNet(NeuralNet):
             train:
             postProcessor:
         """
-        self.convnet_model_path = convnet_model_path;
+        self.convnet_model_path = convnet_model_path
         self.max_sequence_length = 10
         self.postProcessor = postProcessor
         NeuralNet.__init__(self, input_shape, preprocessor, logger, train)
@@ -65,7 +65,7 @@ class LSTMNet(NeuralNet):
         # model.add(Dropout(0.2))
         model.add(Dense(6, activation="softmax"))
 
-        return model;
+        return model
 
     def load_model(self, path):
         """
@@ -226,7 +226,7 @@ class DlibLSTMNet(LSTMNet):
         Returns:
 
         """
-        with open(path_path + ".json") as json_file:
+        with open(path + ".json") as json_file:
             model = model_from_json(json_file.read())
-            model.load_weights(path_path + ".h5")
+            model.load_weights(path + ".h5")
             return model

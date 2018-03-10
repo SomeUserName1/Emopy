@@ -1,11 +1,12 @@
 # Emopy
-Emotion recognition from facial expression using Keras & Tensorflow by 
+Emotion recognition from facial expression using Dlib, Keras and Tensorflow by 
 [Mitiku1](https://github.com/mitiku1).
 
 Including (work in progress)
-- Dlib output, RGB of arbitary size, Video, WebCam Stream preprocessing
-- Basic NN, Single and MultiInput NN, LSTM, CapsNet
-- 
+- Dlib output, RGB image of arbitary size, Video, WebCam Stream pre-processing
+- Basic NN (either images or dlib), MultiInput NN (images and dlib), LSTM (either dlib or images), CapsNet (images)
+- Visualizations of the neurons using techniques of 
+[deep visualization toolbox](https://github.com/yosinski/deep-visualization-toolbox)
 
 ## Dependencies
 - dlib
@@ -39,13 +40,17 @@ Type in cmd/PowerShell:
 
 ## TODO
 #### Prio 1:
-- Add DocStrings & update README.md
 - refactor NN classes & inheritance structure
 - Remove duplications
+- Add CK data set & update instructions for installation
+- get all models to run the training phase properly
+
 
 #### Prio 2:
-- Add CK data set instructions 
-- test all models (& unit tests?)
+- test all models & fix bugs
+- Update DocStrings & README.md
+- include [deep visualization toolbox](https://github.com/yosinski/deep-visualization-toolbox)
 
 #### Prio 3:
 - Implement StackGANEmoPy
+- Write a nice GUI for experimenting & tweaking the architectures & their hyper-parameters
