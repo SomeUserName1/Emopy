@@ -23,3 +23,17 @@ Type in cmd/PowerShell:
   
 ## Training  <!--- TODO --> 
 [CK data set](http://www.pitt.edu/~emotion/ck-spread.htm) 
+
+
+## TODO
+#### Prio 1:
+- Add DocStrings & update README.md
+- refactor NN classes & inheritance structure
+- Remove duplications
+
+#### Prio 2:
+- Add CK data set instructions 
+- test all models (& unit tests?)
+
+#### Prio 3:
+- Implement StackGANEmoPy

@@ -1,7 +1,11 @@
+keras_vggface
 opencv-python
 boost
 sqlalchemy
 numpy
+scipy
+sklearn
 dlib
 tensorflow
 keras
+pandas

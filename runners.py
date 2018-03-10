@@ -16,14 +16,16 @@ from preprocess.multinput import MultiInputPreprocessor
 from preprocess.sequencial import SequencialPreprocessor, DlibSequencialPreprocessor
 from test_config import MODEL_PATH
 from test_config import TEST_TYPE, TEST_IMAGE
-from train_config import DATA_SET_DIR, EPOCHS, LEARNING_RATE, STEPS_PER_EPOCH, AUGMENTATION, BATCH_SIZE
-from train_config import NETWORK_TYPE  # , AUGMENTATION
+from train_config import DATA_SET_DIR, EPOCHS, LEARNING_RATE, STEPS_PER_EPOCH, AUGMENTATION, BATCH_SIZE, NETWORK_TYPE
 from util import SevenEmotionsClassifier
 
 maxSequenceLength = 10
 
 
 def run():
+    """
+
+    """
     if SESSION == 'train':
         run_train()
     elif SESSION == 'test':
@@ -31,6 +33,9 @@ def run():
 
 
 def run_train():
+    """
+
+    """
     input_shape = (IMG_SIZE[0], IMG_SIZE[1], 1)
     classifier = SevenEmotionsClassifier()
     if NETWORK_TYPE == "mi":
@@ -58,6 +63,14 @@ def run_train():
 
 
 def arg_max(array):
+    """
+
+    Args:
+        array:
+
+    Returns:
+
+    """
     max_value = array[0]
     index = 0
     for i, el in enumerate(array):
@@ -68,12 +81,21 @@ def arg_max(array):
 
 
 def draw_landmarks(frame, landmarks):
+    """
+
+    Args:
+        frame:
+        landmarks:
+    """
     for i in range(len(landmarks)):
         landmark = landmarks[i]
         cv2.circle(frame, (int(landmark[0]), int(landmark[1])), 1, color=(255, 0, 0), thickness=1)
 
 
 def run_test():
+    """
+
+    """
     input_shape = (IMG_SIZE[0], IMG_SIZE[1], 1)
     classifier = SevenEmotionsClassifier()
     preprocessor = Preprocessor(classifier, input_shape=input_shape)
@@ -191,6 +213,17 @@ def run_test():
 
 def start_train_program(network_type=NETWORK_TYPE, dataset_dir=DATA_SET_DIR, epochs=EPOCHS, batch_size=BATCH_SIZE,
                         lr=LEARNING_RATE, steps=STEPS_PER_EPOCH, augmentation=AUGMENTATION):
+    """
+
+    Args:
+        network_type:
+        dataset_dir:
+        epochs:
+        batch_size:
+        lr:
+        steps:
+        augmentation:
+    """
     input_shape = (IMG_SIZE[0], IMG_SIZE[1], 1)
     classifier = SevenEmotionsClassifier()
     if (network_type == "mi"):
@@ -221,4 +254,7 @@ def start_train_program(network_type=NETWORK_TYPE, dataset_dir=DATA_SET_DIR, epo
 
 
 def start_test_program():
+    """
+
+    """
     pass
