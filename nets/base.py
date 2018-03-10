@@ -26,6 +26,19 @@ class NeuralNet(object):
     def __init__(self, input_shape, learning_rate, batch_size, epochs, steps_per_epoch, data_set_dir, preprocessor=None,
                  logger=None,
                  train=True):
+        """
+
+        Args:
+            input_shape:
+            learning_rate:
+            batch_size:
+            epochs:
+            steps_per_epoch:
+            data_set_dir:
+            preprocessor:
+            logger:
+            train:
+        """
         self.input_shape = input_shape
         assert len(input_shape) == 3, "Input shape of neural network should be length of 3. e.g (48,48,1)"
         self.models_local_folder = "nn"
@@ -89,6 +102,14 @@ class NeuralNet(object):
         return model
 
     def load_model(self, model_path):
+        """
+
+        Args:
+            model_path:
+
+        Returns:
+
+        """
         with open(model_path + ".json") as model_file:
             model = model_from_json(model_file.read())
             model.load_weights(model_path + ".h5")
@@ -140,6 +161,14 @@ class NeuralNet(object):
         self.logger.log_model(self.models_local_folder, score)
 
     def predict(self, face):
+        """
+
+        Args:
+            face:
+
+        Returns:
+
+        """
         # assert face.shape == IMG_SIZE, "Face image size should be "+str(IMG_SIZE)
         face = face.reshape(-1, 48, 48, 1)
         face = face.astype(np.float32) / 255

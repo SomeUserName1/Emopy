@@ -3,6 +3,7 @@ import os
 import keras
 from keras.layers import Input, Flatten, Dense, Conv2D, MaxPooling2D, Dropout
 from keras.models import Model
+from pandas import json
 
 from config import IMG_SIZE
 from loggers.base import EmopyLogger
@@ -16,7 +17,7 @@ class CustomModelCheckPoint(keras.callbacks.Callback):
         super(CustomModelCheckPoint, self).__init__(**kargs)
         self.last_loss = 1000000000
         self.last_accuracy = 0
-        self.current_model_number = 0;
+        self.current_model_number = 0
         self.epoch_number = 0
 
     # def on_train_begin(self,epoch, logs={}):

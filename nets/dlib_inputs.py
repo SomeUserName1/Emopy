@@ -23,6 +23,14 @@ class DlibPointsInputNeuralNet(NeuralNet):
     """
 
     def __init__(self, input_shape, preprocessor=None, logger=None, train=True):
+        """
+
+        Args:
+            input_shape:
+            preprocessor:
+            logger:
+            train:
+        """
         self.input_shape = input_shape
         self.models_local_folder = "dinn"
         self.logs_local_folder = self.models_local_folder
@@ -123,6 +131,14 @@ class DlibPointsInputNeuralNet(NeuralNet):
         self.logger.log_model(self.models_local_folder, score)
 
     def predict(self, face):
+        """
+
+        Args:
+            face:
+
+        Returns:
+
+        """
         assert face.shape == IMG_SIZE, "Face image size should be " + str(IMG_SIZE)
         face = face.reshape(-1, 48, 48, 1)
         emotions = self.model.predict(face)[0]

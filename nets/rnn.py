@@ -50,8 +50,8 @@ class LSTMNet(NeuralNet):
 
         return model;
 
-    def load_model(self):
-        if self.convnet_model_path == None:
+    def load_model(self, path):
+        if path is None:
             self.convnet_model_path = "models/nn/nn-5"
         with open(self.convnet_model_path + ".json") as model_file:
             model = model_from_json(model_file.read())
@@ -151,13 +151,13 @@ class DlibLSTMNet(LSTMNet):
         model.add(Dense(128, activation="relu"))
         model.add(Dense(6, activation="softmax"))
 
-        return model;
+        return model
 
     def predict(self, dlib_features):
         emotions = self.model.predict(dlib_features)
         return emotions
 
-    def load_model(self, path_path):
+    def load_model(self, path):
         with open(path_path + ".json") as json_file:
             model = model_from_json(json_file.read())
             model.load_weights(path_path + ".h5")

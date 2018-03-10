@@ -2,12 +2,22 @@
 Emotion recognition from facial expression using Keras & Tensorflow by 
 [Mitiku1](https://github.com/mitiku1).
 
+Including (work in progress)
+- Dlib output, RGB of arbitary size, Video, WebCam Stream preprocessing
+- Basic NN, Single and MultiInput NN, LSTM, CapsNet
+- 
+
 ## Dependencies
 - dlib
 - boost
 - Keras
 - Tensorflow
 - OpenCV
+- keras_vggface
+- numpy
+- scipy
+- sklearn
+- pandas
 
 #### Troubleshooting
 - Windows:
@@ -20,6 +30,8 @@ Type in cmd/PowerShell:
  Then edit `[...]/Python36/Lib/Site-packages/pip/compat/__init__.py: Line 75`  
  `return s.decode('utf_8')` to `return s.decode('cp123') `  
   where 123 is to be replaced by the chcp output.
+  
+ - MacOS: No trouble up to now
   
 ## Training  <!--- TODO --> 
 [CK data set](http://www.pitt.edu/~emotion/ck-spread.htm) 
