@@ -10,10 +10,22 @@ from train_config import PATH2SAVE_MODELS, DATA_SET_DIR, BATCH_SIZE, EPOCHS, LEA
 
 
 class EmopyLogger(object):
+    """
+    """
     def __init__(self, output_files=[sys.stdout]):
+        """
+
+        Args:
+            output_files:
+        """
         self.output_files = output_files
 
     def log(self, string):
+        """
+
+        Args:
+            string:
+        """
         for f in self.output_files:
             if f == sys.stdout:
                 print(string)
@@ -22,9 +34,20 @@ class EmopyLogger(object):
                     out_file.write(string + "\n")
 
     def add_log_file(self, log_file):
+        """
+
+        Args:
+            log_file:
+        """
         self.output_files.append(log_file)
 
     def log_model(self, models_local_folder, score):
+        """
+
+        Args:
+            models_local_folder:
+            score:
+        """
         model_number = np.fromfile(os.path.join(PATH2SAVE_MODELS, models_local_folder, "model_number.txt"), dtype=int)
         model_file_name = models_local_folder + "-" + str(model_number[0] - 1)
 

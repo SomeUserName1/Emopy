@@ -13,12 +13,21 @@ class VGGFaceEmopyNet(NeuralNet):
     """
 
     def __init__(self, input_shape, preprocessor=None, logger=None, train=True):
+        """
+
+        Args:
+            input_shape:
+            preprocessor:
+            logger:
+            train:
+        """
         NeuralNet.__init__(self, input_shape, preprocessor, logger, train)
 
     def build(self):
         """
 
-        :return: An instance of the EmoPy VGG Face model
+        Returns:
+            An instance of the EmoPy VGG Face model
         """
         # x = VGGFace(include_top=False, input_shape=self.input_shape)
         vgg_model = VGGFace(include_top=False, input_shape=(224, 224, 3))

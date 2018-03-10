@@ -14,8 +14,20 @@ from train_config import LOG_DIR
 
 
 class LSTMNet(NeuralNet):
+    """
+    """
     def __init__(self, input_shape, convnet_model_path=None, preprocessor=None, logger=None, train=True,
                  postProcessor=None):
+        """
+
+        Args:
+            input_shape:
+            convnet_model_path:
+            preprocessor:
+            logger:
+            train:
+            postProcessor:
+        """
         self.convnet_model_path = convnet_model_path;
         self.max_sequence_length = 10
         self.postProcessor = postProcessor
@@ -32,6 +44,11 @@ class LSTMNet(NeuralNet):
         self.model = self.build()
 
     def build(self):
+        """
+
+        Returns:
+
+        """
 
         model = Sequential()
 
@@ -51,6 +68,14 @@ class LSTMNet(NeuralNet):
         return model;
 
     def load_model(self, path):
+        """
+
+        Args:
+            path:
+
+        Returns:
+
+        """
         if path is None:
             self.convnet_model_path = "models/nn/nn-5"
         with open(self.convnet_model_path + ".json") as model_file:
@@ -59,12 +84,23 @@ class LSTMNet(NeuralNet):
             return model
 
     def predict(self, sequence_faces):
+        """
+
+        Args:
+            sequence_faces:
+
+        Returns:
+
+        """
         assert sequence_faces[0].shape == IMG_SIZE, "Face image size should be " + str(IMG_SIZE)
         face = face.reshape(-1, self.max_sequence_length, 48, 48, 1)
         emotions = self.model.predict(face)[0]
         return emotions
 
     def process_web_cam(self):
+        """
+
+        """
         model = model_from_json(open("models/rnn/rnn-0.json").read())
         model.load_weights("models/rnn/rnn-0.h5")
         cap = cv2.VideoCapture(-1)
@@ -121,7 +157,18 @@ class LSTMNet(NeuralNet):
 
 
 class DlibLSTMNet(LSTMNet):
+    """
+    """
     def __init__(self, input_shape, convnet_model_path=None, preprocessor=None, logger=None, train=True):
+        """
+
+        Args:
+            input_shape:
+            convnet_model_path:
+            preprocessor:
+            logger:
+            train:
+        """
         LSTMNet.__init__(self, input_shape, convnet_model_path, preprocessor, logger, train)
 
         self.models_local_folder = "drnn"
@@ -137,6 +184,11 @@ class DlibLSTMNet(LSTMNet):
         self.model = self.load_model("models/drnn/drnn-2")
 
     def build(self):
+        """
+
+        Returns:
+
+        """
         model = Sequential()
 
         model.add(TimeDistributed(Conv2D(64, (3, 1), padding='valid', activation='relu'),
@@ -154,10 +206,26 @@ class DlibLSTMNet(LSTMNet):
         return model
 
     def predict(self, dlib_features):
+        """
+
+        Args:
+            dlib_features:
+
+        Returns:
+
+        """
         emotions = self.model.predict(dlib_features)
         return emotions
 
     def load_model(self, path):
+        """
+
+        Args:
+            path:
+
+        Returns:
+
+        """
         with open(path_path + ".json") as json_file:
             model = model_from_json(json_file.read())
             model.load_weights(path_path + ".h5")

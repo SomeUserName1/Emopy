@@ -7,6 +7,9 @@ from train_config import DATA_SET_DIR, EPOCHS, LEARNING_RATE, STEPS_PER_EPOCH, B
 
 
 def main():
+    """
+
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument("--data_set_dir", default=DATA_SET_DIR, type=str)
     parser.add_argument("--train", default=(SESSION == "train"), type=bool)

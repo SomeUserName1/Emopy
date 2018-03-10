@@ -9,6 +9,13 @@ detector = dlib.get_frontal_face_detector()
 
 
 def save_face(frame, face, file_path):
+    """
+
+    Args:
+        frame:
+        face:
+        file_path:
+    """
     face_image = frame[
                  max(face.top() - 100, 0):min(face.bottom() + 100, frame.shape[0]),
                  max(face.left() - 100, 0):min(face.right() + 100, frame.shape[1])
@@ -19,6 +26,12 @@ def save_face(frame, face, file_path):
 
 
 def collect_faces(video_path, output_path):
+    """
+
+    Args:
+        video_path:
+        output_path:
+    """
     if not os.path.exists(output_path):
         os.makedirs(output_path)
     cap = cv2.VideoCapture(video_path)

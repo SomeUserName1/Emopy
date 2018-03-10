@@ -24,20 +24,42 @@ EMOTIONS = {
 
 # IMG_SIZE  = (28,28)
 class Length(Layer):
+    """
+    """
     def call(self, inputs, **kwargs):
+        """
+
+        Args:
+            inputs:
+            kwargs:
+
+        Returns:
+
+        """
         return K.sqrt(K.sum(K.square(inputs), -1))
 
     def compute_output_shape(self, input_shape):
+        """
+
+        Args:
+            input_shape:
+
+        Returns:
+
+        """
         return input_shape[:-1]
 
 
 class CapsLayer(Layer):
+    """
+    """
     def __init__(self, num_output=32,
                  batch_size=32, length_dim=8, num_caps=None, layer_type="pcap", num_rout_iter=3, **kwargs):
         """
-        :param num_caps: number capsules in this layer
-        :param length_dim: dimension of capsules output length
-        :param layer_type: type of layer either primary capsule layer(pcap) or capsule layer(cap).
+        Args:
+            num_caps: number capsules in this layer
+            length_dim: dimension of capsules output length
+            layer_type: type of layer either primary capsule layer(pcap) or capsule layer(cap).
         """
         super(CapsLayer, self).__init__(**kwargs)
         self.num_output = num_output
@@ -47,6 +69,17 @@ class CapsLayer(Layer):
         self.num_caps = num_caps
 
     def call(self, input, kernel_size=[9, 9], strides=2, padding="valid"):
+        """
+
+        Args:
+            input:
+            kernel_size:
+            strides:
+            padding:
+
+        Returns:
+
+        """
         self.kernel_size = kernel_size
         self.strides = strides
         self.padding = padding
@@ -75,6 +108,14 @@ class CapsLayer(Layer):
             raise Exception("Not implmented for " + str(self.layer_type))
 
     def routing(self, input):
+        """
+
+        Args:
+            input:
+
+        Returns:
+
+        """
 
         # input shape None,num_caps,input_length_dim
         input = K.expand_dims(input, axis=2)
@@ -115,17 +156,42 @@ class CapsLayer(Layer):
         return v_J
 
     def squash(self, vector):
+        """
+
+        Args:
+            vector:
+
+        Returns:
+
+        """
         vec_squared_norm = K.sum(K.square(vector), axis=-1, keepdims=True)
         scalar_factor = vec_squared_norm / (1 + vec_squared_norm) / K.sqrt(vec_squared_norm)
         vec_squashed = scalar_factor * vector  # element-wise
         return (vec_squashed)
 
     def compute_output_shape(self, input_shape):
+        """
+
+        Args:
+            input_shape:
+
+        Returns:
+
+        """
         return tuple([None, self.num_caps, self.length_dim])
 
 
 class CapsNet(object):
+    """
+    """
     def __init__(self, input_shape, lmd=0.5, learing_rate=1e-4):
+        """
+
+        Args:
+            input_shape:
+            lmd:
+            learing_rate:
+        """
 
         self.input = Input(shape=input_shape)
         conv1 = Conv2D(32, activation="relu", kernel_size=[9, 9], strides=1, padding="valid", name="conv1")(self.input)
@@ -138,6 +204,9 @@ class CapsNet(object):
         self.input_shape = input_shape
 
     def train(self):
+        """
+
+        """
 
         self.x_train, self.y_train = self.load_dataset("/home/mtk/iCog/projects/emopy/dataset/all/train", True)
         self.x_test, self.y_test = self.load_dataset("/home/mtk/iCog/projects/emopy/dataset/all/test", True)
@@ -172,17 +241,42 @@ class CapsNet(object):
         self.model.save_weights("models/all-model.h5")
 
     def string_to_emotion(self, string):
+        """
+
+        Args:
+            string:
+
+        Returns:
+
+        """
         for emotion in EMOTIONS:
             if EMOTIONS[emotion] == string:
                 return emotion
         raise Exception("value " + string, " does not exist")
 
     def sanitize(self, img):
+        """
+
+        Args:
+            img:
+
+        Returns:
+
+        """
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # Convert to grayscale
         img = cv2.resize(img, (self.input_shape[0], self.input_shape[1]))  # Resize
         return img
 
     def load_dataset(self, directory, verbose=True):
+        """
+
+        Args:
+            directory:
+            verbose:
+
+        Returns:
+
+        """
         x, y = [], []
 
         # Read images from the directory
@@ -207,6 +301,15 @@ class CapsNet(object):
         return x, y
 
     def margin_loss(self, y_true, y_pred):
+        """
+
+        Args:
+            y_true:
+            y_pred:
+
+        Returns:
+
+        """
 
         L = y_true * K.square(K.maximum(0., 0.9 - y_pred)) + \
             self.lmd * (1 - y_true) * K.square(K.maximum(0., y_pred - 0.1))

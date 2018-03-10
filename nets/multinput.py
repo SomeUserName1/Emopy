@@ -13,7 +13,14 @@ from train_config import LOG_DIR
 
 
 class CustomModelCheckPoint(keras.callbacks.Callback):
+    """
+    """
     def __init__(self, **kargs):
+        """
+
+        Args:
+            kargs:
+        """
         super(CustomModelCheckPoint, self).__init__(**kargs)
         self.last_loss = 1000000000
         self.last_accuracy = 0
@@ -27,9 +34,24 @@ class CustomModelCheckPoint(keras.callbacks.Callback):
     #     return
 
     def on_epoch_begin(self, epoch, logs={}):
+        """
+
+        Args:
+            epoch:
+            logs:
+
+        Returns:
+
+        """
         return
 
     def on_epoch_end(self, epoch, logs={}):
+        """
+
+        Args:
+            epoch:
+            logs:
+        """
         self.epoch_number += 1
         current_val_loss = logs.get("val_loss")
         current_loss = logs.get("loss")
@@ -93,6 +115,19 @@ class MultiInputNeuralNet(NeuralNet):
 
     def __init__(self, input_shape, learning_rate, batch_size, epochs, steps_per_epoch, dataset_dir,
                  preprocessor=None, logger=None, train=True):
+        """
+
+        Args:
+            input_shape:
+            learning_rate:
+            batch_size:
+            epochs:
+            steps_per_epoch:
+            dataset_dir:
+            preprocessor:
+            logger:
+            train:
+        """
         self.input_shape = input_shape
         assert len(input_shape) == 3, "Input shape of neural network should be length of 3. e.g (48,48,1)"
         self.models_local_folder = "minn"
@@ -215,6 +250,14 @@ class MultiInputNeuralNet(NeuralNet):
         self.logger.log_model(self.models_local_folder, score)
 
     def predict(self, face):
+        """
+
+        Args:
+            face:
+
+        Returns:
+
+        """
         assert face.shape == IMG_SIZE, "Face image size should be " + str(IMG_SIZE)
         face = face.reshape(-1, 48, 48, 1)
         emotions = self.model.predict(face)[0]
