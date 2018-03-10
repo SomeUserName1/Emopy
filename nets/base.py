@@ -1,17 +1,16 @@
-from keras.layers  import Input, Flatten, Dense, Conv2D, MaxPooling2D, Dropout
-from keras.models import Sequential,Model, model_from_json
-from train_config import LOG_DIR,PATH2SAVE_MODELS
-from test_config import MODEL_PATH
 import os
+
 import keras
 import numpy as np
+from keras.layers import Flatten, Dense, Conv2D, MaxPooling2D
+from keras.models import Sequential, model_from_json
+
 from loggers.base import EmopyLogger
-import time
-from util import SevenEmotionsClassifier
-from config import IMG_SIZE
+from test_config import MODEL_PATH
+from train_config import LOG_DIR, PATH2SAVE_MODELS
 
 
-
+# TODO Add PReLU, pooling, BN, look at capsule/merge
 
 
 class NeuralNet(object):
@@ -21,12 +20,13 @@ class NeuralNet(object):
     Parameters
     ----------
     input_shape : tuple
-    
+
     """
-    
-    def __init__(self,input_shape,learning_rate,batch_size,epochs,steps_per_epoch,preprocessor = None,logger=None,train=True):
+
+    def __init__(self, input_shape, learning_rate, batch_size, epochs, steps_per_epoch, preprocessor=None, logger=None,
+                 train=True):
         self.input_shape = input_shape
-        assert len(input_shape) == 3, "Input shape of neural network should be length of 3. e.g (48,48,1)" 
+        assert len(input_shape) == 3, "Input shape of neural network should be length of 3. e.g (48,48,1)"
         self.models_local_folder = "nn"
         self.logs_local_folder = self.models_local_folder
         self.preprocessor = preprocessor
@@ -35,7 +35,7 @@ class NeuralNet(object):
         self.batch_size = batch_size
         self.learning_rate = learning_rate
         self.steps_per_epoch = steps_per_epoch
-        
+
         if not os.path.exists(os.path.join(LOG_DIR,self.logs_local_folder)):
             os.makedirs(os.path.join(LOG_DIR,self.logs_local_folder))
         if logger is None:
@@ -53,12 +53,13 @@ class NeuralNet(object):
     def build(self):
         """
         Build neural network model
-        
-        Returns 
+
+        Returns
         -------
-        keras.models.Model : 
+        keras.models.Model :
             neural network model
         """
+        # TODO rework, use capsule impl., PReLU, BN
         model = Sequential()
         model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', padding= "same", input_shape=self.input_shape,kernel_initializer="glorot_normal"))
         # model.add(Dropout(0.2))
@@ -75,12 +76,13 @@ class NeuralNet(object):
         # model.add(Dropout(0.2))
         model.add(MaxPooling2D(pool_size=(2, 2)))
         model.add(Flatten())
+        # TODO REWORK DENSE LAYERS
         model.add(Dense(252, activation='relu'))
         # model.add(Dropout(0.2))
         model.add(Dense(1024, activation='relu'))
         # model.add(Dropout(0.2))
         model.add(Dense(self.number_of_class, activation='softmax'))
-        
+
         self.built = True
         return model
 
@@ -89,15 +91,15 @@ class NeuralNet(object):
             model = model_from_json(model_file.read())
             model.load_weights(model_path+".h5")
             return model
-        
+
     def save_model(self):
         """
         Saves NeuralNet model. The naming convention is for json and h5 files is,
-        `/path-to-models/model-local-folder-model-number.json` and  
+        `/path-to-models/model-local-folder-model-number.json` and
         `/path-to-models/model-local-folder-model-number.h5` respectively.
         This method also increments model_number inside "model_number.txt" file.
         """
-        
+
         if not os.path.exists(PATH2SAVE_MODELS):
             os.makedirs(PATH2SAVE_MODELS)
         if not os.path.exists(os.path.join(PATH2SAVE_MODELS,self.models_local_folder)):
@@ -114,18 +116,17 @@ class NeuralNet(object):
         model_number.tofile(os.path.join(PATH2SAVE_MODELS,self.models_local_folder,"model_number.txt"))
 
     def train(self):
-        """Traines the neuralnet model.      
+        """Traines the neuralnet model.
         This method requires the following two directory to exist
         /PATH-TO-DATASET-DIR/train
         /PATH-TO-DATASET-DIR/test
-        
+
         """
-        
-        
+
         self.model.compile(loss=keras.losses.categorical_crossentropy,
                     optimizer=keras.optimizers.Adam(self.learning_rate),
                     metrics=['accuracy'])
-        # self.model.fit(x_train,y_train,epochs = EPOCHS, 
+        # self.model.fit(x_train,y_train,epochs = EPOCHS,
         #                 batch_size = BATCH_SIZE,validation_data=(x_test,y_test))
         self.preprocessor = self.preprocessor(DATA_SET_DIR)
         self.model.fit_generator(self.preprocessor.flow(),steps_per_epoch=self.steps_per_epoch,

@@ -1,7 +1,8 @@
-from keras.models import model_from_json
 import os
-import dlib
+
 import cv2
+from keras.models import model_from_json
+
 
 def load_model(path):
     with open(path+".json") as json_file:
@@ -16,5 +17,6 @@ def show_sequence_images(path):
         cv2.destroyAllWindows()
 
 def test_sequences():
+    # TODO ck-split info gathering
     dataset_path = "dataset/ck-split/test"
     for emotion_dir in os.listdir(dataset_path):

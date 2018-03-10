@@ -1,0 +1,7 @@
+opencv-python
+boost
+sqlalchemy
+numpy
+dlib
+tensorflow
+keras

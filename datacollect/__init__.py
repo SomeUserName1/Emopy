@@ -1,8 +1,9 @@
 from __future__ import print_function
 
-import dlib
-import cv2
 import os
+
+import cv2
+import dlib
 
 detector  = dlib.get_frontal_face_detector()
 
@@ -30,7 +31,7 @@ def collect_faces(video_path,output_path):
         faces = detector(frame)
         for face in faces:
             number_of_faces += 1
-            if number_of_faces%5 == 0:
+            if number_of_faces % 5 == 0:  # TODO mod 5 ??? wtf; maybe 5 faces = 1 batch
                 saved_faces += 1
                 save_face(frame,face,os.path.join(output_path,str(saved_faces)+".png"))
                 print ("collected ",saved_faces,"faces")
