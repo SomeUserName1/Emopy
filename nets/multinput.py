@@ -1,5 +1,6 @@
 import os
 
+import cv2
 import keras
 from keras.layers import Input, Flatten, Dense, Conv2D, MaxPooling2D, Dropout
 from keras.models import Model
@@ -259,6 +260,10 @@ class MultiInputNeuralNet(NeuralNet):
 
         """
         assert face.shape == IMG_SIZE, "Face image size should be " + str(IMG_SIZE)
-        face = face.reshape(-1, 48, 48, 1)
+        face = face.reshape(1, 64, 64)
+
+        cv2.imshow("img", face)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
         emotions = self.model.predict(face)[0]
         return emotions

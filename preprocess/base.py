@@ -56,42 +56,40 @@ class Preprocessor(object):
             )
         self.feature_extractor = ImageFeatureExtractor()
 
-    """Load dataset with given path
-    
-    parameters
-    ----------
-    path    : str
-        path to directory containing training and test directory.
-    """
-
     def load_dataset(self, path):
-        """
+        """Load dataset with given path
 
-        Args:
-            path:
+        parameters
+        ----------
+        path    : str
+            path to directory containing training and test directory.
         """
         assert os.path.exists(path), "Specified dataset directory '" + path + "' does not exist "
         train_test_dir = os.listdir(path)
         assert "train" in train_test_dir, "Specified dataset directory '" + path + "' does not contain train directory."
         assert "test" in train_test_dir, "Specified dataset directory '" + path + "' does not  contain test directory."
+
         self.train_image_paths = []
         self.train_image_emotions = []
-        for emdir in os.listdir(os.path.join(path, "train")):
-            print("Loading ", os.path.join(path, "train", emdir))
-            for img_file in os.listdir(os.path.join(path, "train", emdir)):
-                self.train_image_paths.append(os.path.join(path, "train", emdir, img_file))
-                self.train_image_emotions.append(self.classifier.get_class(emdir))
+        for dir in os.listdir(os.path.join(path, "train")):
+            print("Loading ", os.path.join(path, "train", dir))
+            for img_file in os.listdir(os.path.join(path, "train", dir)):
+                self.train_image_paths.append(os.path.join(path, "train", dir, img_file))
+                self.train_image_emotions.append(self.classifier.get_class(dir))
+
         self.test_image_paths = []
         self.test_image_emotions = []
-        for emdir in os.listdir(os.path.join(path, "test")):
-            print("Loading ", os.path.join(path, "test", emdir))
-            for img_file in os.listdir(os.path.join(path, "test", emdir)):
-                self.test_image_paths.append(os.path.join(path, "test", emdir, img_file))
-                self.test_image_emotions.append(self.classifier.get_class(emdir))
+        for dir in os.listdir(os.path.join(path, "test")):
+            print("Loading ", os.path.join(path, "test", dir))
+            for img_file in os.listdir(os.path.join(path, "test", dir)):
+                self.test_image_paths.append(os.path.join(path, "test", dir, img_file))
+                self.test_image_emotions.append(self.classifier.get_class(dir))
+
         assert len(self.train_image_emotions) == len(
             self.train_image_paths), "number of train inputs are not equal to train labels"
         assert len(self.test_image_emotions) == len(
             self.test_image_paths), "number of test inputs are not equal to test labels"
+
         self.train_image_emotions = np.array(self.train_image_emotions)
         self.train_image_paths = np.array(self.train_image_paths)
         self.test_images = self.get_images(self.test_image_paths).reshape(-1, self.input_shape[0], self.input_shape[1],

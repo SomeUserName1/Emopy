@@ -26,6 +26,7 @@ def run():
     """
 
     """
+    print("runners.run()")
     if SESSION == 'train':
         run_train()
     elif SESSION == 'test':
@@ -100,7 +101,9 @@ def run_test():
     classifier = SevenEmotionsClassifier()
     preprocessor = Preprocessor(classifier, input_shape=input_shape)
     postProcessor = PostProcessor(classifier)
-    neural_net = NeuralNet(input_shape, preprocessor=preprocessor, train=False)
+    neural_net = MultiInputNeuralNet(input_shape, preprocessor=preprocessor, learning_rate=1e-4, batch_size=1,
+                                     epochs=100, steps_per_epoch=1,
+                                     dataset_dir=TEST_IMAGE, train=False)
     face_detector = dlib.get_frontal_face_detector()
 
     if TEST_TYPE == "image":
@@ -110,6 +113,7 @@ def run_test():
         for i in range(len(faces)):
             face = preprocessor.sanitize(faces[i])
             predictions.append(neural_net.predict(face))
+        print("predicted")
 
         postProcessor = postProcessor(img, rectangles, predictions)
         cv2.imshow("Image", img)
@@ -253,8 +257,3 @@ def start_train_program(network_type=NETWORK_TYPE, dataset_dir=DATA_SET_DIR, epo
     neural_net.train()
 
 
-def start_test_program():
-    """
-
-    """
-    pass

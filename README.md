@@ -35,33 +35,78 @@ Type in cmd/PowerShell:
  - MacOS: No trouble up to now
   
 ## Training  
-[CK data set info page](http://www.pitt.edu/~emotion/ck-spread.htm) 
+#### Images: [CK data set info page](http://www.pitt.edu/~emotion/ck-spread.htm) 
+
+There are 327 images with direct emotional labels available.  
+For the other images is FACS data available,
+ but currently this project does not contain a FACS to "emotional label parser"/mapping to three continuous dimensions:
+ bipolar arousal, unipolar positive and negative valence as proposed e.g. by 
+ [Affective Signal Processing, Egon von den Broek, Ch. 5.2.2, P.77](https://research.utwente.nl/en/publications/affective-signal-processing-asp-unraveling-the-mystery-of-emotion)
 
 1. Fill the CK and CK+ DATABASE USER AGREEMENT form to receive a download link using the network of your currently 
 enrolled university
 [CK and CK+ DATABASE USER AGREEMENT](http://www.consortium.ri.cmu.edu/ckagree/)
 2. Check your E-Mails
-3. Login and download either only CK or both data bases <!--- TODO check which set -->
-4. Extract the data set 
+3. Login and download either the extended data base
+4. Extract the data set: 
+- all images and labels in one folder  
+- all xls and doc files  
+so that it looks like this
+    ```
+    -CK
+      -EmoPyData
+      -images
+        -S005
+            -001
+                S005_001_0000001.png
+                ...
+                S005_001_0000011.png
+                S005_001_0000011_emotion.txt
+                S005_001_0000011_facs.txt
+                S005_001_0000011_landmarks.txt
+        -S010
+            ...
+        ...        
+  emotions.txt
+  facs.csv
+  Cohn-Kanade Database FACS codes[...]
+  ReadMe
+      ...
+    ```
+5. run the ck_folder_structure.py script with
+ ``python ck_folder_structure.py --ck Path/to/CK --out Path/to/EmoPyData``
 5. Alter config.py, train_config.py and test_config.py accordingly
-6. run `python runners.py train`
+6. Start training
 
+#### Video
+ [75 Emotions in less than a minute on YouTube](https://www.youtube.com/watch?v=ypqQ_mJIU3M)
+ 
 ## Prediction
 
 ## Evaluation and Experiments
 
+- Experimental results:
+1. Replacing max pooling with conv layers with strides
+    . slows learning rate
+    . reduces test accuracy 
+    . increases over fitting rate
+2. Adding dropout layer increases training time.
+3. Large learning rate with dropout layer after each 
+    conv layer might hinder learning
 
 ## TODO
 #### Prio 1:
 - refactor NN classes & inheritance structure
 - Remove duplications
-- Add CK data set & update instructions for installation
 - get all models to run the training phase properly
+- Does the preprocessor only use the test data? 
+- Implement proper testing for all models
 
 
 #### Prio 2:
-- test all models & fix bugs
+- test all models (unit tests?) & fix bugs
 - Update DocStrings & README.md
+- FACS to valence/arrousal parser
 - include [Deep Visualization Toolbox for Tensorflow](https://github.com/InFoCusp/tf_cnnvis)
 
 #### Prio 3:

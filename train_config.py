@@ -1,9 +1,10 @@
+# coding=utf-8
 BATCH_SIZE = 32  # Batch sized used for traing.
-EPOCHS = 100
-LEARNING_RATE = 1e-4
+EPOCHS = 10
+LEARNING_RATE = 1e-3
 PATH2SAVE_MODELS = "models"
-DATA_SET_DIR = "/home/mtk/iCog/projects/emopy/dataset/all"
+DATA_SET_DIR = "C:/Users/Fabi/DataSets/CK/EmoPyData"
 LOG_DIR = "logs"
-STEPS_PER_EPOCH = 500
+STEPS_PER_EPOCH = 640
 NETWORK_TYPE = "mi"  # mi for multi input or si for single input
 AUGMENTATION = True
