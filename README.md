@@ -81,9 +81,9 @@ so that it looks like this
 #### Video
  [75 Emotions in less than a minute on YouTube](https://www.youtube.com/watch?v=ypqQ_mJIU3M)
  
-## Prediction
+## Evaluation & Prediction
 
-## Evaluation and Experiments
+## Experiments
 
 - Experimental results:
 1. Replacing max pooling with conv layers with strides
@@ -94,21 +94,11 @@ so that it looks like this
 3. Large learning rate with dropout layer after each 
     conv layer might hinder learning
 
-## TODO
-#### Prio 1:
-- refactor NN classes & inheritance structure
-- Remove duplications
-- get all models to run the training phase properly
-- Does the preprocessor only use the test data? 
-- Implement proper testing for all models
+
+## TODO:
+1. Get data setup finished for the 3 data sets
+2. Refactor Keras models (inheritance: fields, params, init, build, train, eval & predict, ...)
+3. Build EMG, EDA, ECG preprocessor
+4. Update DocStrings, README.md's and UML diagrams
 
 
-#### Prio 2:
-- test all models (unit tests?) & fix bugs
-- Update DocStrings & README.md
-- FACS to valence/arrousal parser
-- include [Deep Visualization Toolbox for Tensorflow](https://github.com/InFoCusp/tf_cnnvis)
-
-#### Prio 3:
-- Implement StackGANEmoPy
-- Write a nice GUI for experimenting & tweaking the architectures & their hyper-parameters

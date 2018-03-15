@@ -3,10 +3,10 @@ import os
 import keras
 from keras.layers import Input, Flatten, Dense, Conv2D, Dropout
 from keras.models import Model
+from nets.base import NeuralNet
 
 from config import IMG_SIZE, MODEL_PATH, LEARNING_RATE, EPOCHS, BATCH_SIZE, DATA_SET_DIR, LOG_DIR, STEPS_PER_EPOCH
-from loggers.base import EmopyLogger
-from nets.base import NeuralNet
+from util.BaseLogger import EmopyLogger
 
 
 class DlibPointsInputNeuralNet(NeuralNet):

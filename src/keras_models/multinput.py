@@ -4,11 +4,11 @@ import cv2
 import keras
 from keras.layers import Input, Flatten, Dense, Conv2D, MaxPooling2D, Dropout
 from keras.models import Model
+from nets.base import NeuralNet
 from pandas import json
 
 from config import IMG_SIZE, MODEL_PATH, LOG_DIR
-from loggers.base import EmopyLogger
-from nets.base import NeuralNet
+from util.BaseLogger import EmopyLogger
 
 
 class CustomModelCheckPoint(keras.callbacks.Callback):

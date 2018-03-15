@@ -2,460 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="95035169-09f6-4696-b30f-80da9ba9ee7a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/__main__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/datacollect/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/datacollect/__main__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/feature1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/loggers/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/loggers/base.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/model_evaluation/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/model_evaluation/logs/drnn/drnn.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/model_evaluation/logs/nn/nn.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/nets/base.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/nets/caps.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/nets/dlib_inputs.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/nets/multinput.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/nets/rnn.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/nets/vggface.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/postprocess/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/postprocess/base.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/preprocess/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/preprocess/base.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/preprocess/ck_folder_structure.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/preprocess/dlib_input.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/preprocess/feature_extraction.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/preprocess/multinput.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/preprocess/sequencial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/runners.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test_config.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f10.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f11.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f12.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f13.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f14.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f15.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f16.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f17.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f18.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f19.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f20.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f21.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f22.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f23.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f24.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f25.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f26.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f27.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f28.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f29.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f30.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f31.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f7.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f8.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_1/f9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f10.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f11.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f12.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f13.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f14.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f15.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f16.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f17.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f18.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f19.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f20.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f21.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f22.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f23.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f24.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f25.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f26.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f27.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f28.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f29.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f30.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f31.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f32.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f33.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f34.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f35.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f36.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f37.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f38.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f39.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f40.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f41.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f42.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f43.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f44.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f45.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f46.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f47.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f48.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f49.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f50.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f51.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f52.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f53.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f54.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f55.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f56.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f57.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f58.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f59.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f60.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f61.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f62.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f63.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f7.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f8.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_2/f9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f10.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f11.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f12.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f13.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f14.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f15.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f16.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f17.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f18.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f19.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f20.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f21.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f22.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f23.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f24.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f25.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f26.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f27.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f28.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f29.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f30.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f31.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f32.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f33.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f34.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f35.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f36.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f37.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f38.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f39.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f40.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f41.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f42.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f43.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f44.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f45.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f46.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f47.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f48.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f49.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f50.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f51.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f52.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f53.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f54.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f55.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f56.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f57.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f58.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f59.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f60.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f61.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f62.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f63.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f7.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f8.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_3/f9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f10.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f11.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f12.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f13.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f14.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f15.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f16.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f17.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f18.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f19.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f20.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f21.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f22.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f23.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f24.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f25.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f26.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f27.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f28.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f29.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f30.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f31.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f32.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f33.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f34.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f35.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f36.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f37.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f38.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f39.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f40.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f41.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f42.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f43.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f44.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f45.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f46.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f47.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f48.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f49.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f50.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f51.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f52.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f53.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f54.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f55.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f56.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f57.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f58.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f59.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f60.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f61.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f62.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f63.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f7.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f8.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/conv2d_4/f9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/dense_1/f0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/dense_2/f0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/dropout_1/f0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/flatten_1/f0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f10.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f11.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f12.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f13.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f14.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f15.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f16.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f17.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f18.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f19.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f20.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f21.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f22.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f23.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f24.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f25.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f26.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f27.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f28.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f29.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f30.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f31.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f32.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f33.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f34.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f35.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f36.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f37.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f38.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f39.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f40.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f41.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f42.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f43.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f44.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f45.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f46.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f47.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f48.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f49.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f50.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f51.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f52.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f53.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f54.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f55.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f56.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f57.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f58.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f59.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f60.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f61.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f62.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f63.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f7.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f8.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_1/f9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f10.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f11.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f12.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f13.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f14.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f15.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f16.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f17.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f18.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f19.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f20.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f21.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f22.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f23.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f24.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f25.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f26.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f27.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f28.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f29.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f30.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f31.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f32.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f33.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f34.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f35.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f36.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f37.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f38.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f39.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f40.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f41.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f42.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f43.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f44.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f45.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f46.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f47.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f48.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f49.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f50.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f51.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f52.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f53.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f54.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f55.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f56.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f57.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f58.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f59.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f60.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f61.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f62.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f63.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f7.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f8.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_2/f9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f10.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f11.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f12.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f13.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f14.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f15.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f16.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f17.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f18.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f19.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f20.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f21.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f22.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f23.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f24.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f25.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f26.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f27.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f28.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f29.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f30.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f31.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f32.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f33.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f34.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f35.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f36.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f37.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f38.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f39.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f40.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f41.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f42.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f43.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f44.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f45.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f46.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f47.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f48.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f49.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f50.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f51.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f52.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f53.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f54.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f55.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f56.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f57.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f58.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f59.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f60.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f61.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f62.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f63.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f7.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f8.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/max_pooling2d_3/f9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/train_config.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/util.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/visualization/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/visualization/__main__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/visualization/json_helpers.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Emopy.iml" afterPath="$PROJECT_DIR$/.idea/Emopy.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/data_collect/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/util/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/visualization/README.md" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/model_evaluation/logs/drnn/drnn.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/model_evaluation/logs/nn/nn.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/postprocess/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/preprocess/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test.json" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/datacollect/__init__.py" afterPath="$PROJECT_DIR$/src/data_collect/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/datacollect/__main__.py" afterPath="$PROJECT_DIR$/src/data_collect/__main__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/loggers/__init__.py" afterPath="$PROJECT_DIR$/src/__main__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/loggers/base.py" afterPath="$PROJECT_DIR$/src/util/BaseLogger.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/model_evaluation/__init__.py" afterPath="$PROJECT_DIR$/src/keras_models/model_eval_todo.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/nets/base.py" afterPath="$PROJECT_DIR$/src/keras_models/base.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/nets/caps.py" afterPath="$PROJECT_DIR$/src/keras_models/caps.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/nets/dlib_inputs.py" afterPath="$PROJECT_DIR$/src/keras_models/dlib_inputs.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/nets/multinput.py" afterPath="$PROJECT_DIR$/src/keras_models/multinput.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/nets/rnn.py" afterPath="$PROJECT_DIR$/src/keras_models/rnn.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/nets/vggface.py" afterPath="$PROJECT_DIR$/src/keras_models/vggface.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/postprocess/__init__.py" afterPath="$PROJECT_DIR$/src/keras_models/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/postprocess/base.py" afterPath="$PROJECT_DIR$/src/util/BasePostprocessor.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/preprocess/__init__.py" afterPath="$PROJECT_DIR$/src/preprocess/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/preprocess/ck_folder_structure.py" afterPath="$PROJECT_DIR$/src/data_collect/ck_folder_structure.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/util.py" afterPath="$PROJECT_DIR$/src/util/ClassifierWrapper.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.py" afterPath="$PROJECT_DIR$/config.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/preprocess/base.py" afterPath="$PROJECT_DIR$/src/preprocess/base.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/preprocess/dlib_input.py" afterPath="$PROJECT_DIR$/src/preprocess/dlib_input.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/preprocess/multinput.py" afterPath="$PROJECT_DIR$/src/preprocess/multinput.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/runners.py" afterPath="$PROJECT_DIR$/src/runners.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/visualization/__init__.py" afterPath="$PROJECT_DIR$/src/visualization/__init__.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -472,86 +51,67 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="7" lean-forward="false" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-              <folding />
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/preprocess/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="102">
+                <caret line="6" column="2" lean-forward="false" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="runners.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/runners.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-              <folding />
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/visualization/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="68">
+                <caret line="4" column="2" lean-forward="false" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/loggers/base.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="5" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-              <folding />
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/keras_models/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="68">
+                <caret line="4" column="2" lean-forward="false" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/nets/base.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="5" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-              <folding />
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="660">
+                <caret line="83" column="16" lean-forward="false" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="16" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dlib_inputs.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/nets/dlib_inputs.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="77" lean-forward="false" selection-start-line="12" selection-start-column="77" selection-end-line="12" selection-end-column="77" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="multinput.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/nets/multinput.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="48" lean-forward="false" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rnn.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/nets/rnn.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sequencial.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/preprocess/sequencial.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/util/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="17">
+                <caret line="1" column="60" lean-forward="false" selection-start-line="1" selection-start-column="60" selection-end-line="1" selection-end-column="60" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -583,6 +143,7 @@
       <find>models_local_folder</find>
       <find>lmd</find>
       <find>DLIB</find>
+      <find>preprocess.</find>
     </findStrings>
     <replaceStrings>
       <replace>neural_net</replace>
@@ -592,6 +153,7 @@
     </replaceStrings>
     <dirStrings>
       <dir>C:\Users\Fabi\ownCloud\Uni\5\Affective_scientific\Emopy</dir>
+      <dir>C:\Users\Fabi\ownCloud\Uni\5\Affective_scientific\Emopy\src</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -606,7 +168,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/status.diff" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/model_evaluation/__init__.py" />
@@ -624,7 +185,6 @@
         <option value="$PROJECT_DIR$/nets/base.py" />
         <option value="$PROJECT_DIR$/runners.py" />
         <option value="$PROJECT_DIR$/nets/multinput.py" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/__main__.py" />
         <option value="$PROJECT_DIR$/nets/rnn.py" />
         <option value="$PROJECT_DIR$/nets/dlib_inputs.py" />
@@ -638,6 +198,20 @@
         <option value="$PROJECT_DIR$/src/preprocess/sequencial.py" />
         <option value="$PROJECT_DIR$/src/nets/multinput.py" />
         <option value="$PROJECT_DIR$/src/nets/dlib_inputs.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/02_keras_models/base.py" />
+        <option value="$PROJECT_DIR$/src/00_data_collect/README.md" />
+        <option value="$PROJECT_DIR$/src/01_preprocess/README.md" />
+        <option value="$PROJECT_DIR$/src/01_preprocess/multinput.py" />
+        <option value="$PROJECT_DIR$/src/0_preprocess/multinput.py" />
+        <option value="$PROJECT_DIR$/src/preprocess/multinput.py" />
+        <option value="$PROJECT_DIR$/src/__main__.py" />
+        <option value="$PROJECT_DIR$/src/__main__1.py" />
+        <option value="$PROJECT_DIR$/src/keras_models/README.md" />
+        <option value="$PROJECT_DIR$/src/visualization/README.md" />
+        <option value="$PROJECT_DIR$/src/preprocess/README.md" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/util/README.md" />
       </list>
     </option>
   </component>
@@ -681,7 +255,7 @@
       <abbreviatePackageNames />
       <autoscrollToSource />
       <autoscrollFromSource />
-      <sortByType />
+      <sortByType ProjectPane="true" />
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
@@ -719,6 +293,17 @@
               <item name="Emopy" type="b2602c69:ProjectViewProjectNode" />
               <item name="Emopy" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Emopy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Emopy" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Emopy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Emopy" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -733,7 +318,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Fabi\ownCloud\Uni\5\Affective_scientific\Emopy\preprocess" />
+      <recent name="C:\Users\Fabi\ownCloud\Uni\5\Affective_scientific\Emopy\src\00_data_collect" />
+      <recent name="C:\Users\Fabi\ownCloud\Uni\5\Affective_scientific\Emopy\src\util" />
+      <recent name="C:\Users\Fabi\ownCloud\Uni\5\Affective_scientific\Emopy\models\nn" />
+      <recent name="C:\Users\Fabi\ownCloud\Uni\5\Affective_scientific\Emopy\models" />
+      <recent name="C:\Users\Fabi\ownCloud\Uni\5\Affective_scientific\Emopy\src\02_keras_models" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -899,7 +488,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520817639612</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="changed src structure">
+      <created>1521141814686</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1521141814686</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -973,7 +569,8 @@
     <MESSAGE value="more cosmetic changes" />
     <MESSAGE value="updated the readme, waiting for ck download to finish [...]" />
     <MESSAGE value="first training run, more readme/notes, small script for data training data structure creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="first training run, more readme/notes, small script for data training data structure creation" />
+    <MESSAGE value="changed src structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed src structure" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -985,110 +582,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="5" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="10" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/visualization/json_helpers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="11" lean-forward="true" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preprocess/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/visualization/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="87" column="9" lean-forward="true" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preprocess/dlib_input.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="15" column="14" lean-forward="false" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preprocess/sequencial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="280" column="11" lean-forward="true" selection-start-line="280" selection-start-column="11" selection-end-line="280" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model_evaluation/__main__.py" />
-    <entry file="file://$PROJECT_DIR$/model_evaluation/logs/drnn/drnn.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loggers/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6">
-          <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/visualization/__main__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="19" lean-forward="false" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preprocess/feature_extraction.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1847">
-          <caret line="150" column="15" lean-forward="false" selection-start-line="150" selection-start-column="8" selection-end-line="150" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model_evaluation/logs/nn/nn.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feature1.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/0.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/expermental_results.txt" />
-    <entry file="file://$PROJECT_DIR$/test.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2907">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2545">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2017.2/system/python_stubs/-1120166012/nt.py" />
     <entry file="file://C:/Program Files/Python36/Lib/glob.py" />
     <entry file="file://$PROJECT_DIR$/datacollect/__main__.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1192,21 +685,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="272">
-            <caret line="16" column="15" lean-forward="false" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nets/vggface.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1301,63 +779,248 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/keras_models/multinput.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/keras_models/rnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/nn/test.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="37" lean-forward="true" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/keras_models/dlib_inputs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="23" column="11" lean-forward="true" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/keras_models/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/keras_models/model_eval_todo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/loggers/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/BaseLogger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/runners.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+        <state relative-caret-position="-78">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/nets/multinput.py">
+    <entry file="file://$PROJECT_DIR$/src/postprocess/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="48" lean-forward="false" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/nets/rnn.py">
+    <entry file="file://$PROJECT_DIR$/src/util/BasePostprocessor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data_collect/__main__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/01_preprocess/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data_collect/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/preprocess/sequencial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/loggers/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="5" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+        <state relative-caret-position="-663">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/nets/base.py">
+    <entry file="file://$PROJECT_DIR$/src/preprocess/multinput.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="5" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+        <state relative-caret-position="187">
+          <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/__main__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/nets/dlib_inputs.py">
+    <entry file="file://$PROJECT_DIR$/src/__main__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="77" lean-forward="false" selection-start-line="12" selection-start-column="77" selection-end-line="12" selection-end-column="77" />
+        <state relative-caret-position="272">
+          <caret line="16" column="69" lean-forward="true" selection-start-line="16" selection-start-column="69" selection-end-line="16" selection-end-column="69" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1521143469462" expanded="true" signature="0:207" ph="import ..." />
+            <marker date="1521143469462" expanded="true" signature="221:1183" ph="..." />
+            <marker date="1521143469462" expanded="true" signature="226:238" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+            <marker date="1521143469462" expanded="true" signature="849:918" ph="..." />
+            <marker date="1521143469462" expanded="true" signature="962:1154" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data_collect/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="136">
+            <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/preprocess/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="102">
+            <caret line="6" column="2" lean-forward="false" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/visualization/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="68">
+            <caret line="4" column="2" lean-forward="false" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/keras_models/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="68">
+            <caret line="4" column="2" lean-forward="false" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="660">
+            <caret line="83" column="16" lean-forward="false" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="16" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/ClassifierWrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="150" column="0" lean-forward="false" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="17">
+            <caret line="1" column="60" lean-forward="false" selection-start-line="1" selection-start-column="60" selection-end-line="1" selection-end-column="60" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

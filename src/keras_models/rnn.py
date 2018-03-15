@@ -6,10 +6,10 @@ import numpy as np
 from keras.layers import LSTM, Dense, Conv2D, TimeDistributed
 from keras.layers import MaxPooling2D, Flatten
 from keras.models import model_from_json, Sequential
+from nets.base import NeuralNet
 
 from config import LEARNING_RATE, EPOCHS, STEPS_PER_EPOCH, LOG_DIR
-from loggers.base import EmopyLogger
-from nets.base import NeuralNet
+from util.BaseLogger import EmopyLogger
 
 
 class LSTMNet(NeuralNet):

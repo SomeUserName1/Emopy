@@ -3,20 +3,20 @@ import dlib
 # from multiprocessing.queues import Queue
 # from threading import Thread
 import numpy as np
-
-from config import MODEL_PATH, TEST_TYPE, TEST_IMAGE, DATA_SET_DIR, EPOCHS, LEARNING_RATE, STEPS_PER_EPOCH, \
-    AUGMENTATION, BATCH_SIZE, NETWORK_TYPE
-from config import SESSION, IMG_SIZE
 from nets.base import NeuralNet
 from nets.dlib_inputs import DlibPointsInputNeuralNet
 from nets.multinput import MultiInputNeuralNet
 from nets.rnn import LSTMNet, DlibLSTMNet
-from postprocess.base import PostProcessor
+
+from config import MODEL_PATH, TEST_TYPE, TEST_IMAGE, DATA_SET_DIR, EPOCHS, LEARNING_RATE, STEPS_PER_EPOCH, \
+    AUGMENTATION, BATCH_SIZE, NETWORK_TYPE
+from config import SESSION, IMG_SIZE
 from preprocess.base import Preprocessor
 from preprocess.dlib_input import DlibInputPreprocessor
 from preprocess.multinput import MultiInputPreprocessor
 from preprocess.sequencial import SequencialPreprocessor, DlibSequencialPreprocessor
 from util import SevenEmotionsClassifier
+from util.BasePostprocessor import PostProcessor
 
 maxSequenceLength = 10
 

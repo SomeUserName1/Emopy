@@ -6,7 +6,7 @@ from keras.layers import Flatten, Dense, Conv2D, MaxPooling2D
 from keras.models import Sequential, model_from_json
 
 from config import MODEL_PATH, LOG_DIR, PATH2SAVE_MODELS, DATA_SET_DIR
-from loggers.base import EmopyLogger
+from util.BaseLogger import EmopyLogger
 
 
 # TODO Add PReLU, pooling, BN, look at capsule/merge
@@ -14,7 +14,7 @@ from loggers.base import EmopyLogger
 
 class NeuralNet(object):
     """
-    Base class for all neural nets.
+    Base class for all neural keras_models.
 
     Parameters
     ----------
