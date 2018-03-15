@@ -1,0 +1,31 @@
+<diagram program="umletino" version="14.2">
+    <zoom_level>10</zoom_level>
+    <element>
+        <id>UMLClass</id>
+        <coordinates>
+            <x>330</x>
+            <y>120</y>
+            <w>270</w>
+            <h>280</h>
+        </coordinates>
+        <panel_attributes>AbstractBaseNet
+            --
+            input_shape: (int, int, int)
+            learning_rate: double
+            batch_size: int
+            epochs: int
+            steps_per_epoch: int
+            data_set_dir: string
+            temp_folder: string
+            train: bool
+            isBuild:bool
+            preproc:string
+            logger: Logger
+            feature_extraction: ?
+            --
+            #Operation(i: int): int
+            /+AbstractOperation()/
+        </panel_attributes>
+        <additional_attributes></additional_attributes>
+    </element>
+</diagram>
