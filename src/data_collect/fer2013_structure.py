@@ -1,13 +1,9 @@
-import pandas as pd
-import numpy as np
-import random, scipy.misc, os, cv2
-from PIL import Image
-import sys
-import matplotlib.pyplot as plt
+import os
+
 import matplotlib.image as image
-
-
-
+import numpy as np
+import pandas as pd
+from PIL import Image
 
 # fer2013 dataset:
 # Training       28709
@@ -26,15 +22,17 @@ def reconstruct_img(pix_str, size=(48,48)):
     return im
 
 
-def make_dirs(path):
-    train = os.path.join(path + 'train')
-    test = os.path.join(path + 'test')
+def make_dirs(root_path):
+    if not os.path.exists(root_path):
+        os.mkdir(root_path)
+    train = root_path + '/train'
+    test = root_path + '/test'
     for path in [train, test]:
         if not os.path.exists(path):
             os.mkdir(path)
         for emotion in emotions_out:
-            if not os.path.exists(train + emotion):
-                os.mkdir(path + emotion)
+            if not os.path.exists(path + '/' + emotion):
+                os.mkdir(path + '/' + emotion)
 
 
 def map_emotions(emo_in):
