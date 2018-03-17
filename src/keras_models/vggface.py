@@ -2,26 +2,28 @@
 from keras.layers import Flatten, Dense
 from keras_vggface.vggface import VGGFace
 
-from nets.base import NeuralNet
+from keras_models.base import AbstractNet
 
 
 # TODO test
-class VGGFaceEmopyNet(NeuralNet):
+class VGGFaceEmopyNet(AbstractNet):
     """
     Class for implementation of EmoPy using VGG Face Net as base
     according to http://www.robots.ox.ac.uk/%7Evgg/software/vgg_face/.
     """
 
-    def __init__(self, input_shape, preprocessor=None, logger=None, train=True):
-        """
-
-        Args:
-            input_shape:
-            preprocessor:
-            logger:
-            train:
-        """
-        NeuralNet.__init__(self, input_shape, preprocessor, logger, train)
+    def __init__(self, data_out_dir, model_out_dir, input_shape, learning_rate, batch_size, steps_per_epoch, epochs,
+                 preprocessor=None, logger=None, session='train', post_processor=None):
+        super(VGGFaceEmopyNet, self).__init__(data_out_dir, model_out_dir, input_shape, learning_rate, batch_size,
+                                              steps_per_epoch, epochs,
+                                              preprocessor=None, logger=None, session='train')
+        self.TAG = "vgg"
+        self.max_sequence_length = 10
+        self.postProcessor = post_processor
+        self.feature_extractors = ['image']
+        self.number_of_class = self.preprocessor.classifier.get_num_class()
+        super(VGGFaceEmopyNet, self).init_logger(self.logger, self.model_out_dir, self.TAG)
+        super(VGGFaceEmopyNet, self).init_model(self.session)
 
     def build(self):
         """

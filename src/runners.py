@@ -5,11 +5,11 @@ import data_collect.ck_structure as ck_collect
 import data_collect.fer2013_structure as fer_collect
 from config import *
 from keras_models.dlib_inputs import DlibPointsInputNeuralNet
-from keras_models.img_input import NeuralNet
+from keras_models.img_input import ImageInputNeuralNet
 from keras_models.multinput import MultiInputNeuralNet
 from keras_models.rnn import LSTMNet, DlibLSTMNet
-from preprocess.base import Preprocessor
 from preprocess.dlib_input import DlibInputPreprocessor
+from preprocess.image_input import Preprocessor
 from preprocess.multinput import MultiInputPreprocessor
 from preprocess.sequencial import SequencialPreprocessor, DlibSequencialPreprocessor
 from util.ClassifierWrapper import SevenEmotionsClassifier
@@ -23,12 +23,18 @@ def run(shape_predictor_path, data_set_dir, data_out_dir, model_out_dir, net_typ
     """
 
     """
+
+    if session == 'init_data':
+        ck_collect.main(data_set_dir, data_out_dir)
+        fer_collect.main(data_set_dir, data_out_dir)
+        return
+
     input_shape = (img_size[0], img_size[1], 1)
     classifier = SevenEmotionsClassifier()
 
     if NETWORK_TYPE == "imnn":
         preprocessor = Preprocessor(classifier, input_shape=input_shape, augmentation=augmentation)
-        neural_net = NeuralNet(input_shape, preprocessor=preprocessor, train=True)
+        neural_net = ImageInputNeuralNet(input_shape, preprocessor=preprocessor, train=True)
 
     elif NETWORK_TYPE == "dinn":
         preprocessor = DlibInputPreprocessor(classifier, shape_predictor_path, input_shape=input_shape,
@@ -62,14 +68,10 @@ def run(shape_predictor_path, data_set_dir, data_out_dir, model_out_dir, net_typ
                         ", drnn for sequential using the CK data set, dinn for a single Dlib input net }")
 
     print("runners.run()")
-    if session == 'init_data':
-        ck_collect.main(data_set_dir, data_out_dir)
-        fer_collect.main(data_set_dir, data_out_dir)
+
     if session == 'train':
         neural_net.train()
-    if session == 'test':
-        neural_net.test()
-    elif SESSION == 'predict':
+    if session == 'predict':
         neural_net.predict()
 
 
@@ -79,7 +81,7 @@ if __name__ == "__main__":
     parser.add_argument("--shape_predictor_path", default=SHAPE_PREDICTOR_PATH, type=str)
     parser.add_argument("--data_set_dir", default=DATA_SET_DIR, type=str)
     parser.add_argument("--data_out_dir", default=DATA_OUT_DIR, type=str)
-    parser.add_argument("--model_out_dir", default=MODEL_OUT_PATH, type=str)
+    parser.add_argument("--model_out_dir", default=MODEL_OUT_DIR, type=str)
 
     # Session Setup
     parser.add_argument("--net_type", default=NETWORK_TYPE, type=str)
@@ -94,9 +96,9 @@ if __name__ == "__main__":
     parser.add_argument("--augmentation", default=AUGMENTATION, type=bool)
 
     # Prediction Setup
-    parser.add_argument("--pred_img", default=MODEL_OUT_PATH, type=str)
-    parser.add_argument("--pred_vid", default=MODEL_OUT_PATH, type=str)
-    parser.add_argument("--pred_type", default=MODEL_OUT_PATH, type=str)
+    parser.add_argument("--pred_img", default=PREDICTION_IMAGE, type=str)
+    parser.add_argument("--pred_vid", default=PREDICTION_VIDEO, type=str)
+    parser.add_argument("--pred_type", default=PREDICTION_TYPE, type=str)
 
     args = parser.parse_args()
 

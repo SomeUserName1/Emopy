@@ -1,47 +1,28 @@
-import os
-
 import cv2
-import keras
 import numpy as np
 from keras.layers import LSTM, Dense, Conv2D, TimeDistributed
 from keras.layers import MaxPooling2D, Flatten
 from keras.models import model_from_json, Sequential
-from nets.base import NeuralNet
 
-from config import LEARNING_RATE, EPOCHS, STEPS_PER_EPOCH, LOG_DIR
-from util.BaseLogger import EmopyLogger
+from keras_models.base import AbstractNet
 
 
-class LSTMNet(NeuralNet):
+class LSTMNet(AbstractNet):
     """
     """
 
-    def __init__(self, input_shape, convnet_model_path=None, preprocessor=None, logger=None, train=True,
-                 postProcessor=None):
-        """
-
-        Args:
-            input_shape:
-            convnet_model_path:
-            preprocessor:
-            logger:
-            train:
-            postProcessor:
-        """
-        self.convnet_model_path = convnet_model_path
+    def __init__(self, data_out_dir, model_out_dir, input_shape, learning_rate, batch_size, steps_per_epoch, epochs,
+                 preprocessor=None, logger=None, session='train', post_processor=None):
+        super(LSTMNet, self).__init__(data_out_dir, model_out_dir, input_shape, learning_rate, batch_size,
+                                      steps_per_epoch, epochs,
+                                      preprocessor=None, logger=None, session='train')
+        self.TAG = "imlstm"
         self.max_sequence_length = 10
-        self.postProcessor = postProcessor
-        NeuralNet.__init__(self, input_shape, preprocessor, logger, train)
-        self.models_local_folder = "rnn"
-        self.logs_local_folder = self.models_local_folder
-        if not os.path.exists(os.path.join(LOG_DIR, self.logs_local_folder)):
-            os.makedirs(os.path.join(LOG_DIR, self.logs_local_folder))
-        if logger is None:
-            self.logger = EmopyLogger([os.path.join(LOG_DIR, self.logs_local_folder, self.logs_local_folder + ".txt")])
-            print("Logging to file", os.path.join(LOG_DIR, self.logs_local_folder, self.logs_local_folder + ".txt"))
-        else:
-            self.logger = logger
-        self.model = self.build()
+        self.postProcessor = post_processor
+        self.feature_extractors = ['image']
+        self.number_of_class = self.preprocessor.classifier.get_num_class()
+        super(LSTMNet, self).init_logger(self.logger, self.model_out_dir, self.TAG)
+        super(LSTMNet, self).init_model(self.session)
 
     def build(self):
         """
@@ -66,22 +47,6 @@ class LSTMNet(NeuralNet):
         model.add(Dense(6, activation="softmax"))
 
         return model
-
-    def load_model(self, path):
-        """
-
-        Args:
-            path:
-
-        Returns:
-
-        """
-        if path is None:
-            self.convnet_model_path = "models/nn/nn-5"
-        with open(self.convnet_model_path + ".json") as model_file:
-            model = model_from_json(model_file.read())
-            model.load_weights(self.convnet_model_path + ".h5")
-            return model
 
     def predict(self, sequence_faces):
         """
@@ -116,7 +81,7 @@ class LSTMNet(NeuralNet):
                 sequences
             predictions = []
             for i in range(len(faces)):
-                face = preprocessor.sanitize(faces[i])
+                face = self.preprocessor.sanitize(faces[i])
                 predictions.append(neuralNet.predict(face))
 
             self.postProcessor = self.postProcessor(img, rectangles, predictions)
@@ -125,71 +90,25 @@ class LSTMNet(NeuralNet):
                 break
         cv2.destroyAllWindows()
 
-    def train(self):
-        """Traines the neuralnet model.
-        This method requires the following two directory to exist
-        /PATH-TO-DATASET-DIR/train
-        /PATH-TO-DATASET-DIR/test
-        
-        """
 
-        print("model")
-        self.model.summary()
-        print("learning rate", LEARNING_RATE)
-
-        self.model.compile(loss=keras.losses.categorical_crossentropy,
-                           optimizer=keras.optimizers.Adam(LEARNING_RATE),
-                           metrics=['accuracy'])
-
-        # self.model.compile(loss='categorical_crossentropy', optimizer='SGD', metrics=['accuracy'])
-        print(self.model.output.shape)
-        # x_train,x_test,y_train ,y_test = train_test_split(self.X,self.y,test_size=0.3)
-        # self.model.fit(x_train,y_train,epochs = EPOCHS, 
-        #                 batch_size = BATCH_SIZE,validation_data=(x_test,y_test))
-        self.model.fit_generator(self.preprocessor.flow(), steps_per_epoch=STEPS_PER_EPOCH,
-                                 epochs=EPOCHS,
-                                 validation_data=(
-                                     self.preprocessor.test_sequences_dpoints, self.preprocessor.test_sequence_labels))
-
-        score = self.model.evaluate(self.preprocessor.test_sequences_dpoints, self.preprocessor.test_sequence_labels)
-        self.save_model()
-        self.logger.log_model(self.models_local_folder, score)
-
-
-class DlibLSTMNet(LSTMNet):
+class DlibLSTMNet(AbstractNet):
     """
     """
 
-    def __init__(self, input_shape, convnet_model_path=None, preprocessor=None, logger=None, train=True):
-        """
-
-        Args:
-            input_shape:
-            convnet_model_path:
-            preprocessor:
-            logger:
-            train:
-        """
-        LSTMNet.__init__(self, input_shape, convnet_model_path, preprocessor, logger, train)
-
-        self.models_local_folder = "drnn"
-        self.logs_local_folder = self.models_local_folder
-        if not os.path.exists(os.path.join(LOG_DIR, self.logs_local_folder)):
-            os.makedirs(os.path.join(LOG_DIR, self.logs_local_folder))
-        if logger is None:
-            self.logger = EmopyLogger([os.path.join(LOG_DIR, self.logs_local_folder, self.logs_local_folder + ".txt")])
-            print("Logging to file", os.path.join(LOG_DIR, self.logs_local_folder, self.logs_local_folder + ".txt"))
-        else:
-            self.logger = logger
-        self.model = self.build()
-        self.model = self.load_model("models/drnn/drnn-2")
+    def __init__(self, data_out_dir, model_out_dir, input_shape, learning_rate, batch_size, steps_per_epoch, epochs,
+                 preprocessor=None, logger=None, session='train', post_processor=None):
+        super(DlibLSTMNet, self).__init__(data_out_dir, model_out_dir, input_shape, learning_rate, batch_size,
+                                          steps_per_epoch, epochs, preprocessor=None, logger=None, session='train')
+        self.TAG = "dliblstm"
+        self.max_sequence_length = 10
+        self.postProcessor = post_processor
+        self.feature_extractors = ['dlib']
+        self.number_of_class = self.preprocessor.classifier.get_num_class()
+        super(DlibLSTMNet, self).init_logger(self.logger, self.model_out_dir, self.TAG)
+        super(DlibLSTMNet, self).init_model(self.session)
 
     def build(self):
-        """
 
-        Returns:
-
-        """
         model = Sequential()
 
         model.add(TimeDistributed(Conv2D(64, (3, 1), padding='valid', activation='relu'),
@@ -207,27 +126,8 @@ class DlibLSTMNet(LSTMNet):
         return model
 
     def predict(self, dlib_features):
-        """
 
-        Args:
-            dlib_features:
-
-        Returns:
-
-        """
         emotions = self.model.predict(dlib_features)
         return emotions
 
-    def load_model(self, path):
-        """
 
-        Args:
-            path:
-
-        Returns:
-
-        """
-        with open(path + ".json") as json_file:
-            model = model_from_json(json_file.read())
-            model.load_weights(path + ".h5")
-            return model
