@@ -5,7 +5,7 @@ from keras.layers import Input, Flatten, Dense, Conv2D, Dropout
 from keras.models import Model
 from nets.base import NeuralNet
 
-from config import IMG_SIZE, MODEL_PATH, LEARNING_RATE, EPOCHS, BATCH_SIZE, DATA_SET_DIR, LOG_DIR, STEPS_PER_EPOCH
+from config import IMG_SIZE, MODEL_DIR, LEARNING_RATE, EPOCHS, BATCH_SIZE, DATA_SET_DIR, LOG_DIR, STEPS_PER_EPOCH
 from util.BaseLogger import EmopyLogger
 
 
@@ -48,7 +48,7 @@ class DlibPointsInputNeuralNet(NeuralNet):
         if train:
             self.model = self.build()
         else:
-            self.model = self.load_model(MODEL_PATH)
+            self.model = self.load_model(MODEL_OUT_PATH)
 
     def build(self):
         """

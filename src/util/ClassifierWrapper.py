@@ -178,5 +178,6 @@ class PositiveNegetiveClassifier(Classifier):
             string:
         """
         assert string in ["happy", "neutral", "surprise", "anger", "disgust", "fear",
-                          "sad"], "Emotion must be either happy, neutral,sad, fear,disgust,sad or surprise for Positive negative classifier"
-        self.EMOTION_STATE[string]
+                          "sad"], "Emotion must be either happy, neutral,sad, fear,disgust,sad or surprise for Positive " \
+                                  "negative classifier"
+        return self.EMOTION_STATE[string]

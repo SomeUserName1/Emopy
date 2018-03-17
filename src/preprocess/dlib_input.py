@@ -3,7 +3,6 @@ from __future__ import print_function
 import dlib
 import numpy as np
 
-from config import SHAPE_PREDICTOR_PATH
 from preprocess.base import Preprocessor
 from preprocess.feature_extraction import DlibFeatureExtractor
 
@@ -24,7 +23,7 @@ class DlibInputPreprocessor(Preprocessor):
         if true print logs to screen
     """
 
-    def __init__(self, classifier, input_shape=None, batch_size=32, augmentation=False, verbose=True):
+    def __init__(self, classifier, predictor, input_shape=None, batch_size=32, augmentation=False, verbose=True):
         """
 
         Args:
@@ -35,7 +34,7 @@ class DlibInputPreprocessor(Preprocessor):
             verbose:
         """
         Preprocessor.__init__(self, classifier, input_shape, batch_size, augmentation, verbose)
-        self.predictor = dlib.shape_predictor(SHAPE_PREDICTOR_PATH)
+        self.predictor = dlib.shape_predictor(predictor)
         self.feature_extractor = DlibFeatureExtractor(self.predictor)
 
     def __call__(self, path):
@@ -49,7 +48,7 @@ class DlibInputPreprocessor(Preprocessor):
         """
         self.load_dataset(path)
         self.test_images, self.test_dpoints, self.dpointsDists, self.dpointsAngles = self.feature_extractor.extract(
-            self.test_images);
+            self.test_images)
         self.called = True
         return self
 

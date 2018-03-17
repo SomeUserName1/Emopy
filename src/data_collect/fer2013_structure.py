@@ -1,3 +1,4 @@
+import argparse
 import os
 
 import matplotlib.image as image
@@ -61,7 +62,8 @@ def map_emotions(emo_in):
     return emo_out
 
 
-def main(csv_path='~/DataSets/fer2013/fer2013.csv', out='C:/Users/Fabi/DataSets/EmoPyData'):
+def main(data_set_dir, out):
+    csv_path = data_set_dir + '/fer2013/fer2013.csv'
     data = pd.read_csv(csv_path)
     train = data[data.Usage == 'Training']
     train.name = 'train'
@@ -76,7 +78,13 @@ def main(csv_path='~/DataSets/fer2013/fer2013.csv', out='C:/Users/Fabi/DataSets/
                 img = reconstruct_img(im_arr)
                 emo_out = map_emotions(emotion)
                 image.imsave(out + '/' + d_set.name + '/' + emo_out + '/' + '%s.png' % counter, img)
-                counter = counter +1
+                counter = counter + 1
+
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data_set_dir", type=str)
+    parser.add_argument("--data_out_dir", type=str)
+
+    args = parser.parse_args()
+    main(args.data_set_dir, args.data_out_dir)

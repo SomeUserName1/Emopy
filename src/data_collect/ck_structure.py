@@ -4,21 +4,19 @@ import glob
 import os
 import random
 import shutil
-
-CK_DIR = "C:/Users/Fabi/DataSets/CK/images"
-TRAIN_OUT_DIR = "C:/Users/Fabi/DataSets/EmoPyData/train"
-TEST_OUT_DIR = "C:/Users/Fabi/DataSets/EmoPyData/test"
+import sys
 
 
-def create_folder_structure():
+def create_folder_structure(ck_dir, out_dir):
     """
     Create the folder structure needed by the preprocessor
     """
-    if not os.path.exists(TRAIN_OUT_DIR):
-        os.mkdir(TRAIN_OUT_DIR)
+    train_out_dir = out_dir + '/train'
+    if not os.path.exists(train_out_dir):
+        os.mkdir(train_out_dir)
 
-    for sdir in os.listdir(CK_DIR):
-        spath = os.path.join(CK_DIR, sdir)
+    for sdir in os.listdir(ck_dir):
+        spath = os.path.join(ck_dir, sdir)
         for ddir in os.listdir(spath):
             dpath = os.path.join(spath, ddir)
             if os.path.isdir(dpath):
@@ -27,13 +25,13 @@ def create_folder_structure():
                 print("not a dir:", dpath)
             emotion_txt = glob.glob('*emotion*')
             if len(emotion_txt) == 1:
-                add_emotion(os.path.join(dpath, emotion_txt[0]))
+                add_emotion(os.path.join(dpath, emotion_txt[0]), train_out_dir)
             elif len(emotion_txt) > 1:
                 print(emotion_txt)
-    test()
+    test(train_out_dir)
 
 
-def add_emotion(path):
+def add_emotion(path, train_out_dir):
     """
         Copies the image in the correct folder according to the label
 
@@ -62,7 +60,7 @@ def add_emotion(path):
     parts = path.split("_")
     img_path = '.'.join(("_".join(parts[:3]), 'png'))
     img_name = os.path.basename(img_path)
-    dst_path = os.path.join(TRAIN_OUT_DIR, label)
+    dst_path = os.path.join(train_out_dir, label)
 
     if not os.path.exists(dst_path):
         os.mkdir(dst_path)
@@ -70,33 +68,39 @@ def add_emotion(path):
     shutil.copy(img_path, os.path.join(dst_path, img_name))
 
 
-def test():
+def test(train_out_dir):
     """
         choose and copy test 7 images
     """
-    above = os.path.join(TRAIN_OUT_DIR, '..')
+    above = os.path.join(train_out_dir, '..')
     os.chdir(above)
     if not os.path.exists("test"):
         os.mkdir("test")
 
-    for dir in os.listdir(TRAIN_OUT_DIR):
-        cur_dir = os.path.join(TRAIN_OUT_DIR, dir)
+    for sdir in os.listdir(train_out_dir):
+        cur_dir = os.path.join(train_out_dir, sdir)
         list_curr_dir = os.listdir(cur_dir)
         random.seed()
         rand_num = random.randint(0, len(list_curr_dir) - 1)
         rand_img = list_curr_dir[rand_num]
         rand_img_path = os.path.join(cur_dir, rand_img)
-        dst_path = os.path.join("test", dir)
+        dst_path = os.path.join("test", sdir)
         if not os.path.exists(dst_path):
             os.mkdir(dst_path)
 
         shutil.move(rand_img_path, os.path.join(dst_path, os.path.basename(rand_img_path)))
 
 
+def main(data_set_dir, data_out_dir):
+    ck_in_dir = data_set_dir + '/CK/images'
+
+    create_folder_structure(ck_in_dir, data_out_dir)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--ck", default=CK_DIR, type=str)
-    parser.add_argument("--out", default=TRAIN_OUT_DIR, type=str)
+    parser.add_argument("--data_set_dir", type=str)
+    parser.add_argument("--data_out_dir", type=str)
 
     args = parser.parse_args()
-    create_folder_structure()
+    main(args.data_set_dir, args.data_out_dir)

@@ -1,5 +1,10 @@
 from __future__ import print_function
-import numpy as np, os, cv2, dlib
+
+import os
+
+import cv2
+import dlib
+import numpy as np
 
 from config import IMG_SIZE
 
@@ -168,7 +173,7 @@ class DlibFeatureExtractor(FeatureExtractor):
         dlib_points = (dlib_points - IMAGE_CENTER) / IMG_WIDTH
         dlib_points = dlib_points.reshape((-1, 1, 68, 2))
 
-        distances /= 50.0;
+        distances /= 50.0
         distances = distances.reshape(-1, 1, 68, 1)
 
         angles /= (2 * np.pi)
