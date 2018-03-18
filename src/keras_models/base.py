@@ -1,14 +1,9 @@
 import os
 from abc import abstractmethod, ABCMeta
 
-import keras
 import numpy as np
 from keras.models import model_from_json
 
-from preprocess.dlib_input import DlibInputPreprocessor
-from preprocess.image_input import Preprocessor
-from preprocess.multinput import MultiInputPreprocessor
-from preprocess.sequencial import SequencialPreprocessor, DlibSequencialPreprocessor
 from util.BaseLogger import EmopyLogger
 
 
@@ -60,12 +55,14 @@ class AbstractNet(object, metaclass=ABCMeta):
             self.logger = EmopyLogger([os.path.join(model_out_dir, tag, "%s.log" % tag)])
         else:
             self.logger = logger
+        return self.logger
 
     def init_model(self, session):
-        if session == 'train':
+        if session == "'train'":
             self.model = self.build()
         elif session == 'predict':
             self.model = self.load_model()
+        return self.model
 
     @abstractmethod
     def build(self):
@@ -79,46 +76,13 @@ class AbstractNet(object, metaclass=ABCMeta):
         """
         pass
 
+    @abstractmethod
     def train(self):
         """
 
 
         """
-        assert self.model is not None, "Model not built yet."
-
-        self.model.compile(loss=keras.losses.categorical_crossentropy,
-                           optimizer=keras.optimizers.Adam(self.learning_rate),
-                           metrics=['accuracy'])
-        self.preprocessor = self.preprocessor(self.data_dir)
-        self.model.summary()
-
-        if isinstance(self.preprocessor, Preprocessor):
-            validation_data = self.preprocessor.test_images, \
-                              self.preprocessor.test_image_emotions
-
-        elif isinstance(self.preprocessor, DlibInputPreprocessor):
-            validation_data = [self.preprocessor.test_dpoints, self.preprocessor.dpointsDists,
-                               self.preprocessor.dpointsAngles], self.preprocessor.test_image_emotions
-
-        elif isinstance(self.preprocessor, MultiInputPreprocessor):
-            validation_data = [self.preprocessor.test_images, self.preprocessor.test_dpoints,
-                               self.preprocessor.dpointsDists, self.preprocessor.dpointsAngles], \
-                              self.preprocessor.test_image_emotions
-
-        elif isinstance(self.preprocessor, SequencialPreprocessor):
-            validation_data = self.preprocessor.test_sequences, self.preprocessor.test_sequence_labels
-
-        elif isinstance(self.preprocessor, DlibSequencialPreprocessor):
-            validation_data = self.preprocessor.test_sequences_dpoints, self.preprocessor.test_sequence_labels
-        else:
-            raise Exception("invalid preprocessor %s" % self.preprocessor)
-
-        self.model.fit_generator(self.preprocessor.flow(), steps_per_epoch=self.steps_per_epoch,
-                                 epochs=self.epochs,
-                                 validation_data=validation_data)
-        score = self.model.evaluate(validation_data)
-        self.save_model()
-        self.logger.log_model(self.TAG, score)
+        pass
 
     def save_model(self):
         """
@@ -147,9 +111,6 @@ class AbstractNet(object, metaclass=ABCMeta):
     def load_model(self):
         """
         loads a pre-trained model
-        Args:
-            model_path: path to a pre-trained model without file-ending
-
         Returns: the loaded model
 
         """

@@ -207,3 +207,12 @@ def predict():
                 if (cv2.waitKey(10) & 0xFF == ord('q')):
                     break
             cv2.destroyAllWindows()
+
+
+
+# ------------------ Lost and Found -----------------
+#        self.train_image_paths = np.array(self.train_image_paths)
+#        self.test_images = self.feature_extractor.extract(self.test_images)
+#        self.test_image_emotions = np.eye(self.classifier.get_num_class())[np.array(self.test_image_emotions)]
+#        self.test_image_paths = []
+#        self.train_image_emotions = np.array(self.train_image_emotions)

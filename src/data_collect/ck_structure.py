@@ -6,11 +6,26 @@ import random
 import shutil
 import sys
 
+emotions_out = ['anger', 'neutral', 'disgust', 'fear', 'happy', 'sad', 'surprise']
+
+
+def make_dirs(root_path):
+    if not os.path.exists(root_path):
+        os.mkdir(root_path)
+    train = root_path + '/train'
+    test = root_path + '/test'
+    for path in [train, test]:
+        if not os.path.exists(path):
+            os.mkdir(path)
+        for emotion in emotions_out:
+            if not os.path.exists(path + '/' + emotion):
+                os.mkdir(path + '/' + emotion)
 
 def create_folder_structure(ck_dir, out_dir):
     """
     Create the folder structure needed by the preprocessor
     """
+    make_dirs(out_dir)
     train_out_dir = out_dir + '/train'
     if not os.path.exists(train_out_dir):
         os.mkdir(train_out_dir)

@@ -1,4 +1,5 @@
 import numpy as np
+import keras
 from keras.layers import Flatten, Dense, Conv2D, MaxPooling2D
 from keras.models import Sequential
 
@@ -15,8 +16,8 @@ class ImageInputNeuralNet(AbstractNet):
                                                   steps_per_epoch, epochs, preprocessor, logger, session)
 
         assert len(input_shape) == 3, "Input shape of neural network should be length of 3. e.g (48,48,1)"
-
-        self.TAG = 'imnn'
+        print(self.preprocessor)
+        self.TAG = 'imagenn'
         self.feature_extractors = ['image']
         self.number_of_class = self.preprocessor.classifier.get_num_class()
         super(ImageInputNeuralNet, self).init_logger(self.logger, self.model_out_dir, self.TAG)
@@ -57,6 +58,22 @@ class ImageInputNeuralNet(AbstractNet):
         model.add(Dense(self.number_of_class, activation='softmax'))
 
         return model
+
+    def train(self):
+        assert self.model is not None, "Model not built yet."
+        self.model.compile(loss=keras.losses.categorical_crossentropy,
+                           optimizer=keras.optimizers.Adam(self.learning_rate),
+                           metrics=['accuracy'])
+
+        self.preprocessor(self.data_dir)
+
+        self.model.fit_generator(self.preprocessor.flow(), steps_per_epoch=self.steps_per_epoch,
+                                 epochs=self.epochs,
+                                 validation_data=(self.preprocessor.test_images, self.preprocessor.test_image_emotions))
+        score = self.model.evaluate(self.preprocessor.test_images, self.preprocessor.test_image_emotions)
+
+        self.save_model()
+        self.logger.log_model(self.TAG, score, self.model)
 
     def predict(self, face):
         """

@@ -27,8 +27,8 @@ class MultiInputNeuralNet(AbstractNet):
         self.TAG = "minn"
         self.feature_extractors = ["image"]
         self.number_of_class = self.preprocessor.classifier.get_num_class()
-        super(MultiInputNeuralNet, self).init_logger(self.logger, self.model_out_dir, self.TAG)
-        super(MultiInputNeuralNet, self).init_model(self.session)
+        self.logger = super(MultiInputNeuralNet, self).init_logger(self.logger, self.model_out_dir, self.TAG)
+        self.model = super(MultiInputNeuralNet, self).init_model(self.session)
 
     def build(self):
         """
@@ -96,8 +96,30 @@ class MultiInputNeuralNet(AbstractNet):
 
         self.model = Model(inputs=[image_input_layer, dlib_points_input_layer, dlib_points_dist_input_layer,
                                    dlib_points_angle_input_layer], outputs=merged_layers)
-        self.built = True
+        self.model.compile(loss=keras.losses.categorical_crossentropy,
+                           optimizer=keras.optimizers.Adam(self.learning_rate),
+                           metrics=['accuracy'])
+
         return self.model
+
+    def train(self):
+        assert self.model is not None, "Model not built yet."
+        self.model.compile(loss=keras.losses.categorical_crossentropy,
+                           optimizer=keras.optimizers.Adam(self.learning_rate),
+                           metrics=['accuracy'])
+
+        self.preprocessor = self.preprocessor(self.data_dir)
+
+        self.model.fit_generator(self.preprocessor.flow(), steps_per_epoch=self.steps_per_epoch,
+                                 epochs=self.epochs,
+                                 validation_data=([self.preprocessor.test_images, self.preprocessor.test_dpoints,
+                                                   self.preprocessor.dpointsDists, self.preprocessor.dpointsAngles],
+                                                  self.preprocessor.test_image_emotions))
+        score = self.model.evaluate(
+            [self.preprocessor.test_images, self.preprocessor.test_dpoints, self.preprocessor.dpointsDists,
+             self.preprocessor.dpointsAngles], self.preprocessor.test_image_emotions)
+        self.save_model()
+        self.logger.log_model(self.TAG, score, self.model)
 
     def predict(self, face):
         """

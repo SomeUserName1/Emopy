@@ -6,8 +6,8 @@ import numpy as np
 from keras.preprocessing.image import ImageDataGenerator
 from sklearn.utils import shuffle
 
-from config import IMG_SIZE, BATCH_SIZE
-from preprocess.base import Preprocessor
+from config import IMG_SIZE, BATCH_SIZE, SHAPE_PREDICTOR_PATH
+from preprocess.image_input import Preprocessor
 
 
 class SequencialPreprocessor(Preprocessor):
@@ -179,7 +179,7 @@ class DlibSequencialPreprocessor(SequencialPreprocessor):
     """
 
     def __init__(self, classifier, input_shape=None, batch_size=BATCH_SIZE, augmentation=False, verbose=True,
-                 max_sequence_length=10, predictor_path="shape_predictor_68_face_landmarks.dat"):
+                 max_sequence_length=10, predictor_path=SHAPE_PREDICTOR_PATH):
         """
 
         Args:

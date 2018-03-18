@@ -81,6 +81,25 @@ class DlibPointsInputNeuralNet(AbstractNet):
         self.built = True
         return self.model
 
+    def train(self):
+        assert self.model is not None, "Model not built yet."
+        self.model.compile(loss=keras.losses.categorical_crossentropy,
+                           optimizer=keras.optimizers.Adam(self.learning_rate),
+                           metrics=['accuracy'])
+
+        self.preprocessor = self.preprocessor(self.data_dir)
+
+        self.model.fit_generator(self.preprocessor.flow(), steps_per_epoch=self.steps_per_epoch,
+                                 epochs=self.epochs,
+                                 validation_data=([self.preprocessor.test_dpoints, self.preprocessor.dpointsDists,
+                                                   self.preprocessor.dpointsAngles],
+                                                  self.preprocessor.test_image_emotions))
+        score = self.model.evaluate(
+            [self.preprocessor.test_dpoints, self.preprocessor.dpointsDists, self.preprocessor.dpointsAngles],
+            self.preprocessor.test_image_emotions)
+        self.save_model()
+        self.logger.log_model(self.TAG, score, self.model)
+
     def predict(self, face):
         """
 

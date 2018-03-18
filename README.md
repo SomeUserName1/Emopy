@@ -35,7 +35,9 @@ Type in cmd/PowerShell:
  - MacOS: No trouble up to now
   
 ## Training  
-#### Images: [CK data set info page](http://www.pitt.edu/~emotion/ck-spread.htm) 
+### Images: 
+#### CK 
+[CK data set info page](http://www.pitt.edu/~emotion/ck-spread.htm) 
 
 There are 327 images with direct emotional labels available.  
 For the other images is FACS data available,
@@ -48,7 +50,7 @@ enrolled university
 [CK and CK+ DATABASE USER AGREEMENT](http://www.consortium.ri.cmu.edu/ckagree/)
 2. Check your E-Mails
 3. Login and download either the extended data base
-4. Extract the data set: 
+4. Extract the data set to ```~/DataSets``` 
 - all images and labels in one folder  
 - all xls and doc files  
 so that it looks like this
@@ -73,19 +75,26 @@ so that it looks like this
   ReadMe
       ...
     ```
-5. run the ck_folder_structure.py script with
- ``python ck_folder_structure.py --ck Path/to/CK --out Path/to/EmoPyData``
-5. Alter config.py, train_config.py and test_config.py accordingly
-6. Start training
+#### fer2013
+[Kaggle Page](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data)
+1. Download and extract the data set to ```~/DataSets/fer2013```
+``` 
+-fer2013
+ fer2013.bib
+ fer2013.csv
+ README        
+ ```
 
+Then run the runner with ```session = 'init_data'```
 #### Video
  [75 Emotions in less than a minute on YouTube](https://www.youtube.com/watch?v=ypqQ_mJIU3M)
  
-## Evaluation & Prediction
+ 
+### To run the training start the runner script with ```session = 'train'```
+
+## Prediction
 
 ## Experiments
-
-- Experimental results:
 1. Replacing max pooling with conv layers with strides
     . slows learning rate
     . reduces test accuracy 
@@ -96,9 +105,21 @@ so that it looks like this
 
 
 ## TODO:
-1. Get data setup finished for the 3 data sets
-2. Refactor Keras models (inheritance: fields, params, init, build, train, eval & predict, ...)
-3. Build EMG, EDA, ECG preprocessor
-4. Update DocStrings, README.md's and UML diagrams
+### General
+- Update DocStrings, README.md's and UML diagrams
+- move webcam and video stuff out of keras_models and rather into data_collect/some preprocessor
 
+### keras_models 
+- refactor build & implement predict
+- Write a nice GUI for experimenting & tweaking the architectures & their hyper-parameters
+- implement some InfoGAN/StackGAN model
 
+### preprocess
+- refactor inheritance
+- what does feature extractor exactly extract?
+- add EMG. EDA, ECG preprocessor
+- add FACS preprocessor
+
+### util
+- implement 3 continuous dimension classifier for arrousal, positive valence and negative valence
+- what does postprocess do?

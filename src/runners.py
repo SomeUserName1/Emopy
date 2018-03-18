@@ -18,48 +18,54 @@ maxSequenceLength = 10
 
 
 def run(shape_predictor_path, data_set_dir, data_out_dir, model_out_dir, net_type,
-        session, img_size, lr, steps, batch_size, epochs, augmentation,
+        session, img_size, logger,  lr, steps, batch_size, epochs, augmentation,
         pred_img, pred_vid, pred_type):
     """
 
     """
-
-    if session == 'init_data':
+    if session == "'init_data'":
         ck_collect.main(data_set_dir, data_out_dir)
         fer_collect.main(data_set_dir, data_out_dir)
+        print("finished generating data")
         return
 
     input_shape = (img_size[0], img_size[1], 1)
     classifier = SevenEmotionsClassifier()
 
-    if NETWORK_TYPE == "imnn":
+    if net_type == "imagenn":
         preprocessor = Preprocessor(classifier, input_shape=input_shape, augmentation=augmentation)
-        neural_net = ImageInputNeuralNet(input_shape, preprocessor=preprocessor, train=True)
+        neural_net = ImageInputNeuralNet(data_out_dir, model_out_dir, input_shape, lr, batch_size, steps, epochs,
+                                         preprocessor, logger, session)
 
-    elif NETWORK_TYPE == "dinn":
+    elif net_type == "dlibnn":
         preprocessor = DlibInputPreprocessor(classifier, shape_predictor_path, input_shape=input_shape,
                                              augmentation=augmentation)
-        neural_net = DlibPointsInputNeuralNet(input_shape, preprocessor=preprocessor, train=True)
+        neural_net = DlibPointsInputNeuralNet(data_out_dir, model_out_dir, input_shape, lr, batch_size, steps, epochs,
+                                              preprocessor, logger, session)
 
-    elif NETWORK_TYPE == "minn":
+    elif net_type == "minn":
         preprocessor = MultiInputPreprocessor(classifier, input_shape=input_shape, augmentation=augmentation)
-        neural_net = MultiInputNeuralNet(input_shape, preprocessor=preprocessor, train=True)
+        neural_net = MultiInputNeuralNet(data_out_dir, model_out_dir, input_shape, lr, batch_size, steps, epochs,
+                                         preprocessor, logger, session)
 
-    elif NETWORK_TYPE == "lstm":
+    elif net_type == "imlstm":
         preprocessor = SequencialPreprocessor(classifier, input_shape=input_shape, augmentation=augmentation)(
             "dataset/ck-split")
-        neural_net = LSTMNet(input_shape, preprocessor=preprocessor, train=True)
+        neural_net = LSTMNet(data_out_dir, model_out_dir, input_shape, lr, batch_size, steps, epochs,
+                                         preprocessor, logger, session)
 
-    elif NETWORK_TYPE == "dlstm":
-        preprocessor = DlibSequencialPreprocessor(classifier, input_shape=input_shape, augmentation=augmentation)(
+    elif net_type == "dliblstm":
+        preprocessor = DlibSequencialPreprocessor(classifier, input_shape=input_shape, augmentation=augmentation,
+                                                  predictor_path=shape_predictor_path)(
             "dataset/ck-split")
-        neural_net = DlibLSTMNet(input_shape, preprocessor=preprocessor, train=True)
+        neural_net = DlibLSTMNet(data_out_dir, model_out_dir, input_shape, lr, batch_size, steps, epochs,
+                                         preprocessor, logger, session)
 
-    # elif NETWORK_TYPE == "milstm":
+    # elif net_type == "milstm":
     #    preprocessor = MultiInputPreprocessor(classifier, input_shape=input_shape, augmentation=augmentation)
     #   neural_net = MultiInputLSTMNet
 
-    # elif NETWORK_TYPE == "caps":
+    # elif net_type == "caps":
     #    preprocessor = MultiInputPreprocessor(classifier, input_shape=input_shape, augmentation=augmentation)
     #   neural_net = MultiInputLSTMNet
 
@@ -69,9 +75,9 @@ def run(shape_predictor_path, data_set_dir, data_out_dir, model_out_dir, net_typ
 
     print("runners.run()")
 
-    if session == 'train':
+    if session == "'train'":
         neural_net.train()
-    if session == 'predict':
+    if session == "'predict'":
         neural_net.predict()
 
 
@@ -86,7 +92,8 @@ if __name__ == "__main__":
     # Session Setup
     parser.add_argument("--net_type", default=NETWORK_TYPE, type=str)
     parser.add_argument("--session", default=SESSION, type=str)
-    parser.add_argument("--img_size", default=IMG_SIZE, type=(int, int))
+    parser.add_argument("--img_size", default=IMG_SIZE, type=int, nargs=2)
+    parser.add_argument("--logger", default=None, type=str)
 
     # Training and Testing setup
     parser.add_argument("--lr", default=LEARNING_RATE, type=float)
@@ -103,9 +110,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if not os.path.exists(args.data_set_dir):
-        print("Data set path given does not exists")
-        exit(0)
+        raise Exception("Data set path given does not exists")
 
     run(args.shape_predictor_path, args.data_set_dir, args.data_out_dir, args.model_out_dir, args.net_type,
-        args.session, args.img_size, args.lr, args.steps, args.batch_size, args.epochs, args.augmentation,
+        args.session, args.img_size, args.logger, args.lr, args.batch_size, args.steps, args.epochs, args.augmentation,
         args.pred_img, args.pred_vid, args.pred_type)

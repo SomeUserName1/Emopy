@@ -1,4 +1,5 @@
 import cv2
+import keras
 import numpy as np
 from keras.layers import LSTM, Dense, Conv2D, TimeDistributed
 from keras.layers import MaxPooling2D, Flatten
@@ -47,6 +48,24 @@ class LSTMNet(AbstractNet):
         model.add(Dense(6, activation="softmax"))
 
         return model
+
+    def train(self):
+        assert self.model is not None, "Model not built yet."
+        self.model.compile(loss=keras.losses.categorical_crossentropy,
+                           optimizer=keras.optimizers.Adam(self.learning_rate),
+                           metrics=['accuracy'])
+
+        self.preprocessor = self.preprocessor(self.data_dir)
+
+        self.model.fit_generator(self.preprocessor.flow(), steps_per_epoch=self.steps_per_epoch,
+                                 epochs=self.epochs,
+                                 validation_data=(
+                                     self.preprocessor.test_sequences, self.preprocessor.test_sequence_labels))
+
+        score = self.model.evaluate(self.preprocessor.test_sequences, self.preprocessor.test_sequence_labels)
+
+        self.save_model()
+        self.logger.log_model(self.TAG, score, self.model)
 
     def predict(self, sequence_faces):
         """
@@ -124,6 +143,24 @@ class DlibLSTMNet(AbstractNet):
         model.add(Dense(6, activation="softmax"))
 
         return model
+
+    def train(self):
+        assert self.model is not None, "Model not built yet."
+        self.model.compile(loss=keras.losses.categorical_crossentropy,
+                           optimizer=keras.optimizers.Adam(self.learning_rate),
+                           metrics=['accuracy'])
+
+        self.preprocessor = self.preprocessor(self.data_dir)
+
+        self.model.fit_generator(self.preprocessor.flow(), steps_per_epoch=self.steps_per_epoch,
+                                 epochs=self.epochs,
+                                 validation_data=(
+                                     self.preprocessor.test_sequences_dpoints, self.preprocessor.test_sequence_labels))
+
+        score = self.model.evaluate(self.preprocessor.test_sequences_dpoints, self.preprocessor.test_sequence_labels)
+
+        self.save_model()
+        self.logger.log_model(self.TAG, score, self.model)
 
     def predict(self, dlib_features):
 

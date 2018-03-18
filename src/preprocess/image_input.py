@@ -26,11 +26,6 @@ class Preprocessor(AbstractPreprocessor):
             augmentation:
             verbose:
         """
-        self.train_image_paths = np.array(self.train_image_paths)
-        self.test_images = self.feature_extractor.extract(self.test_images)
-        self.test_image_emotions = np.eye(self.classifier.get_num_class())[np.array(self.test_image_emotions)]
-        self.test_image_paths = []
-        self.train_image_emotions = np.array(self.train_image_emotions)
         self.classifier = classifier
         self.input_shape = input_shape
         self.batch_size = batch_size
