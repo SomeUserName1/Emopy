@@ -141,7 +141,7 @@ class MultiInputNeuralNet(AbstractNet):
         merged_layers = PReLU()(merged_layers)
         merged_layers = Dense(2048)(merged_layers)
         merged_layers = PReLU()(merged_layers)
-        merged_layers = Dropout(0.25)(merged_layers)
+        merged_layers = Dropout(0.4)(merged_layers)
         merged_layers = Dense(512)(merged_layers)
         merged_layers = PReLU()(merged_layers)
         merged_layers = Dense(self.number_of_classes, activation='softmax')(merged_layers)
@@ -155,6 +155,7 @@ class MultiInputNeuralNet(AbstractNet):
         return self.model
 
     def train(self):
+        self.preprocessor = self.preprocessor(self.data_dir)
         self.model.fit_generator(self.preprocessor.flow(), steps_per_epoch=self.steps_per_epoch,
                                  epochs=self.epochs,
                                  validation_data=([self.preprocessor.test_images, self.preprocessor.test_dpoints,

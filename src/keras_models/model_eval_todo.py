@@ -3,7 +3,6 @@ import os
 import cv2
 import dlib
 import numpy as np
-from keras.models import model_from_json
 from keras_models.rnn.rnn import DlibLSTMNet
 
 from config import *
@@ -18,21 +17,6 @@ from util.ClassifierWrapper import SevenEmotionsClassifier
 # from threading import Thread
 
 maxSequenceLength = 10
-
-def load_model(path):
-    """
-
-    Args:
-        path:
-
-    Returns:
-
-    """
-    with open(path + ".json") as json_file:
-        model = model_from_json(json_file.read())
-        model.load_weights(path + ".h5")
-        return model
-
 
 def show_sequence_images(path):
     """

@@ -131,6 +131,7 @@ class DlibPointsInputNeuralNet(AbstractNet):
         return self.model
 
     def train(self):
+        self.preprocessor = self.preprocessor(self.data_dir)
         self.model.fit_generator(self.preprocessor.flow(), steps_per_epoch=self.steps_per_epoch,
                                  epochs=self.epochs,
                                  validation_data=([self.preprocessor.test_dpoints, self.preprocessor.dpointsDists,

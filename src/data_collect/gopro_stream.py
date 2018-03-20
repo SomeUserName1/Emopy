@@ -36,7 +36,7 @@ def get_command_msg(id):
 ##
 VERBOSE = False
 ## Sends Record command to GoPro Camera, must be in Video mode!
-RECORD = False
+RECORD = True
 ##
 ## Saves the feed to a custom location
 SAVE = False

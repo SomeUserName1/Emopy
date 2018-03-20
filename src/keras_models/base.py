@@ -34,9 +34,9 @@ class AbstractNet(object, metaclass=ABCMeta):
         self.model_out_dir = model_out_dir
 
         self.input_shape = input_shape
-        self.preprocessor = preprocessor(data_out_dir)
-        self.number_of_classes = None
-
+        self.preprocessor = preprocessor
+        self.number_of_classes = self.preprocessor.classifier.get_num_class()
+        print("base init", self.preprocessor)
         self.batch_size = batch_size
         self.learning_rate = learning_rate
         self.steps_per_epoch = steps_per_epoch

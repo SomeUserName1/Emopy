@@ -96,6 +96,7 @@ class Preprocessor(AbstractPreprocessor):
         self.load_dataset(path)
         self.test_images = self.feature_extractor.extract(self.test_images)
         self.called = True
+        return self
 
     def generate_indexes(self, random=True):
         """

@@ -1,8 +1,6 @@
 import argparse
 import os
 
-from keras_models.rnn.lstm import LSTMNet, DlibLSTMNet
-
 import data_collect.ck_structure as ck_collect
 import data_collect.fer2013_structure as fer_collect
 from config import *
@@ -10,6 +8,7 @@ from keras_models.caps.caps import CapsNet
 from keras_models.cnn.dlib_inputs import DlibPointsInputNeuralNet
 from keras_models.cnn.img_input import ImageInputNeuralNet
 from keras_models.cnn.multinput import MultiInputNeuralNet
+from keras_models.lstm.lstm import LSTMNet, DlibLSTMNet
 from preprocess.dlib_input import DlibInputPreprocessor
 from preprocess.image_input import Preprocessor
 from preprocess.multinput import MultiInputPreprocessor
@@ -73,7 +72,7 @@ def run(shape_predictor_path, data_set_dir, data_out_dir, model_out_dir, net_typ
     elif net_type == "caps":
         preprocessor = Preprocessor(classifier, input_shape=input_shape, augmentation=augmentation)
         neural_net = CapsNet(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps, epochs,
-                             preprocessor, logger, session, lmd=0.5)
+                             preprocessor, logger, session, lmd=0.2)
 
     else:
         raise Exception("Network type must be in {mi for a multi-input NN, si for a single-input NN, rnn for LSTM "

@@ -1,10 +1,10 @@
 import keras
 from keras import backend as K
-from keras.layers import Conv2D, Input, PReLU, BatchNormalization
+from keras.layers import Conv2D, Input, PReLU
 from keras.models import Model
 
 from keras_models.base import AbstractNet
-from keras_models.caps.layers import Length, CapsLayer
+from keras_models.caps.layers import Length, CapsuleLayer, PrimaryCap
 
 
 class CapsNet(AbstractNet):
@@ -22,27 +22,28 @@ class CapsNet(AbstractNet):
         super(CapsNet, self).__init__(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps, epochs,
                                       preprocessor, logger, session)
 
+        print("caps init", self.preprocessor)
         self.lmd = lmd
         self.feature_extractors = ["image"]
-        self.number_of_classes = self.preprocessor.classifier.get_num_class()
         self.model = super(CapsNet, self).init_model(self.session)
 
     def build(self):
         input_layer = Input(shape=self.input_shape)
-
-        conv1 = Conv2D(32, kernel_size=[9, 9], strides=1, padding="valid", name="conv1")(input_layer)
+        conv1 = Conv2D(64, kernel_size=[9, 9], strides=1, padding="valid", name="conv1")(input_layer)
         conv1 = PReLU()(conv1)
-        conv1 = BatchNormalization()(conv1)
-        primary_caps = CapsLayer(length_dim=8)(conv1, padding="valid")
-        second_caps = CapsLayer(num_caps=self.number_of_classes, length_dim=16, layer_type="cap")(primary_caps)
+        primary_caps = PrimaryCap(conv1, dim_capsule=8, n_channels=32, kernel_size=9, strides=2, padding='valid')
+        second_caps = CapsuleLayer(num_capsule=self.number_of_classes, dim_capsule=16)(primary_caps)
         length = Length(name="pred")(second_caps)
 
         self.model = Model(inputs=input_layer, outputs=length)
         self.model.compile(loss=[self.margin_loss],
                            optimizer=keras.optimizers.Adam(self.learning_rate),
                            metrics=['accuracy'])
+        return self.model
 
     def train(self):
+        print("train", self.preprocessor)
+        self.preprocessor = self.preprocessor(self.data_dir)
         self.model.fit_generator(self.preprocessor.flow(), steps_per_epoch=self.steps_per_epoch,
                                  epochs=self.epochs,
                                  validation_data=(
