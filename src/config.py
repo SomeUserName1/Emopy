@@ -6,15 +6,15 @@ DATA_OUT_DIR = "C:/Users/Fabi/DataSets/EmoPyData"
 MODEL_OUT_DIR = "../models"
 
 # Session Setup
-NETWORK_TYPE = "imagenn"  # mi for multi input or si for single input
+NETWORK_TYPE = "minn"  # mi for multi input or si for single input
 SESSION = 'train'  # this value should be 'init_data', 'train' or 'predict'
 IMG_SIZE = (64, 64)
 
 # Training & Testing Setup
-LEARNING_RATE = 1e-4
-BATCH_SIZE = 64  # Batch sized used for traing.
-STEPS_PER_EPOCH = 32000
-EPOCHS = 50
+LEARNING_RATE = 1e-3
+BATCH_SIZE = 32  # Batch sized used for training.
+STEPS_PER_EPOCH = 10000
+EPOCHS = 8
 AUGMENTATION = True
 
 # Prediction Setup

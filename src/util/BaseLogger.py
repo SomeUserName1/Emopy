@@ -3,10 +3,11 @@ from __future__ import print_function
 import os
 import sys
 import time
-from keras.utils import print_summary, plot_model
-import numpy as np
 
-from config import MODEL_OUT_DIR, DATA_SET_DIR, BATCH_SIZE, EPOCHS, LEARNING_RATE
+import numpy as np
+from keras.utils import print_summary, plot_model
+
+from config import MODEL_OUT_DIR, DATA_SET_DIR, BATCH_SIZE, EPOCHS, LEARNING_RATE, STEPS_PER_EPOCH
 
 
 class EmopyLogger(object):
@@ -56,11 +57,12 @@ class EmopyLogger(object):
         self.log("Trained model " + model_file_name + ".json")
         self.log(time.strftime("%A %B %d,%Y %I:%M%p"))
         self.log("Dataset dir: " + DATA_SET_DIR)
-        print_summary(model, print_fn=self.log )
+        print_summary(model, print_fn=self.log)
         self.log("Parameters")
         self.log("_______________________________________")
-        self.log("Batch-Size    : " + str(BATCH_SIZE))
-        self.log("Epoches       : " + str(EPOCHS))
+        self.log("Batch size    : " + str(BATCH_SIZE))
+        self.log("Batches per Epoch    : " + str(STEPS_PER_EPOCH))
+        self.log("Epochs       : " + str(EPOCHS))
         self.log("Learning rate : " + str(LEARNING_RATE))
         self.log("_______________________________________")
         self.log("Loss          : " + str(score[0]))
@@ -68,4 +70,5 @@ class EmopyLogger(object):
         self.log("=========================================End of Log=================================================")
         self.log("====================================================================================================")
         self.log("----------------------------------------------------------------------------------------------------")
-        plot_model(model, show_shapes=True, to_file=MODEL_OUT_DIR + '/' + models_local_folder + '/' + model_file_name + ".png")
+        plot_model(model, show_shapes=True, to_file=MODEL_OUT_DIR + '/' + models_local_folder + '/' + model_file_name +
+                                                    ".png")

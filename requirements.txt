@@ -1,4 +1,6 @@
 keras_vggface
+goprocam
+goprohero
 opencv-python
 boost
 sqlalchemy

@@ -8,8 +8,9 @@ from util.BaseLogger import EmopyLogger
 
 
 class AbstractNet(object, metaclass=ABCMeta):
-    def __init__(self, data_out_dir, model_out_dir, input_shape, learning_rate, batch_size, steps_per_epoch, epochs,
-                 preprocessor=None, logger=None, session='train'):
+    def __init__(self, data_out_dir, model_out_dir, net_type, input_shape, learning_rate, batch_size, steps_per_epoch,
+                 epochs,
+                 preprocessor, logger=None, session='train'):
         """
         initializes the basic class variables and the non-basic (e.g. different preprocessors) to None
         It is important to set the TAG of the net directly after calling super.init and esp. before initializing the
@@ -26,14 +27,14 @@ class AbstractNet(object, metaclass=ABCMeta):
             logger: The standard logger found int util/BaseLogger.py if None; by now there are no dedicated loggers
             session: either
         """
-        self.TAG = 'an'
+        self.net_type = net_type
         self.session = session
         self.logger = logger
         self.data_dir = data_out_dir
         self.model_out_dir = model_out_dir
 
         self.input_shape = input_shape
-        self.preprocessor = preprocessor
+        self.preprocessor = preprocessor(data_out_dir)
         self.number_of_classes = None
 
         self.batch_size = batch_size
@@ -42,20 +43,12 @@ class AbstractNet(object, metaclass=ABCMeta):
         self.epochs = epochs
         self.model = None
 
-    def init_logger(self, logger, model_out_dir, tag):
-        """
-        initializes the logger when the TAG is set according to the net type
-        :param logger: the used logger
-        :param model_out_dir: the dir where the logger shall write to
-        :param tag: the tag which is set according to the net type
-        """
-        if not os.path.exists(os.path.join(model_out_dir, tag)):
-            os.makedirs(os.path.join(model_out_dir, tag))
+        if not os.path.exists(os.path.join(model_out_dir, self.net_type)):
+            os.makedirs(os.path.join(model_out_dir, self.net_type))
         if logger is None:
-            self.logger = EmopyLogger([os.path.join(model_out_dir, tag, "%s.log" % tag)])
+            self.logger = EmopyLogger([os.path.join(model_out_dir, self.net_type, "%s.log" % self.net_type)])
         else:
             self.logger = logger
-        return self.logger
 
     def init_model(self, session):
         if session == "'train'":
@@ -84,6 +77,13 @@ class AbstractNet(object, metaclass=ABCMeta):
         """
         pass
 
+    @abstractmethod
+    def predict(self, face):
+        """
+
+        """
+        pass
+
     def save_model(self):
         """
         Saves NeuralNet model. The naming convention is for json and h5 files is,
@@ -93,7 +93,7 @@ class AbstractNet(object, metaclass=ABCMeta):
         """
         if not os.path.exists(self.model_out_dir):
             os.makedirs(self.model_out_dir)
-        out_dir = os.path.join(self.model_out_dir, self.TAG)
+        out_dir = os.path.join(self.model_out_dir, self.net_type)
         if not os.path.exists(out_dir):
             os.makedirs(os.path.join(out_dir))
         if not os.path.exists(os.path.join(out_dir, "model_number.txt")):
@@ -101,8 +101,8 @@ class AbstractNet(object, metaclass=ABCMeta):
         else:
             model_number = np.fromfile(os.path.join(out_dir, "model_number.txt"),
                                        dtype=int)
-        model_file_name = self.TAG + "-" + str(model_number[0])
-        with open(os.path.join(self.model_out_dir, self.TAG, model_file_name + ".json"), "a+") as jfile:
+        model_file_name = self.net_type + "-" + str(model_number[0])
+        with open(os.path.join(self.model_out_dir, self.net_type, model_file_name + ".json"), "a+") as jfile:
             jfile.write(self.model.to_json())
         self.model.save_weights(os.path.join(out_dir, model_file_name + ".h5"))
         model_number[0] += 1
@@ -116,7 +116,7 @@ class AbstractNet(object, metaclass=ABCMeta):
         """
         if not os.path.exists(self.model_out_dir):
             os.makedirs(self.model_out_dir)
-        out_dir = os.path.join(self.model_out_dir, self.TAG)
+        out_dir = os.path.join(self.model_out_dir, self.net_type)
         if not os.path.exists(out_dir):
             os.makedirs(os.path.join(out_dir))
         if not os.path.exists(os.path.join(out_dir, "model_number.txt")):
@@ -125,17 +125,10 @@ class AbstractNet(object, metaclass=ABCMeta):
             model_number = np.fromfile(os.path.join(out_dir, "model_number.txt"),
                                        dtype=int)
 
-        model_file_name = self.TAG + "-" + str(model_number[0])
-        path = os.path.join(self.model_out_dir, self.TAG, model_file_name + ".json")
+        model_file_name = self.net_type + "-" + str(model_number[0])
+        path = os.path.join(self.model_out_dir, self.net_type, model_file_name + ".json")
 
         with open(path) as model_file:
             model = model_from_json(model_file.read())
             model.load_weights(path + ".h5")
             return model
-
-    @abstractmethod
-    def predict(self, face):
-        """
-
-        """
-        pass

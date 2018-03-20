@@ -1,13 +1,14 @@
+import os
+
 import cv2
 import dlib
 import numpy as np
-import os
 from keras.models import model_from_json
+from keras_models.rnn.rnn import DlibLSTMNet
 
 from config import *
-from keras_models.img_input import NeuralNet
-from keras_models.multinput import MultiInputNeuralNet
-from keras_models.rnn import DlibLSTMNet
+from keras_models.cnn.img_input import NeuralNet
+from keras_models.cnn.multinput import MultiInputNeuralNet
 from preprocess.base import Preprocessor
 from preprocess.sequencial import DlibSequencialPreprocessor
 from util.BasePostprocessor import PostProcessor

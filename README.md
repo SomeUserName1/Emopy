@@ -3,12 +3,14 @@ Emotion recognition from facial expression using Dlib, Keras and Tensorflow by
 [Mitiku1](https://github.com/mitiku1).
 
 Including (work in progress)
-- Dlib output, RGB image of arbitary size, Video, WebCam Stream pre-processing
-- Basic NN (either images or dlib), MultiInput NN (images and dlib), LSTM (either dlib or images), CapsNet (images)
+- using images or 68 face landmarks for 7 emotion (neutral, sad, happy, angry, disgust, surprise, fear) classification
+- image input neural net, dlib 68 face landmark prediction input neural net, both image and face landmarks input neural 
+net, video and web cam input neural LSTM networks 
 - Visualizations of the neurons using techniques of 
 [deep visualization toolbox](https://github.com/yosinski/deep-visualization-toolbox)
 
 ## Dependencies
+- ffmpeg
 - dlib
 - boost
 - Keras

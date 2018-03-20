@@ -1,13 +1,15 @@
 import argparse
 import os
 
+from keras_models.rnn.lstm import LSTMNet, DlibLSTMNet
+
 import data_collect.ck_structure as ck_collect
 import data_collect.fer2013_structure as fer_collect
 from config import *
-from keras_models.dlib_inputs import DlibPointsInputNeuralNet
-from keras_models.img_input import ImageInputNeuralNet
-from keras_models.multinput import MultiInputNeuralNet
-from keras_models.rnn import LSTMNet, DlibLSTMNet
+from keras_models.caps.caps import CapsNet
+from keras_models.cnn.dlib_inputs import DlibPointsInputNeuralNet
+from keras_models.cnn.img_input import ImageInputNeuralNet
+from keras_models.cnn.multinput import MultiInputNeuralNet
 from preprocess.dlib_input import DlibInputPreprocessor
 from preprocess.image_input import Preprocessor
 from preprocess.multinput import MultiInputPreprocessor
@@ -18,7 +20,7 @@ maxSequenceLength = 10
 
 
 def run(shape_predictor_path, data_set_dir, data_out_dir, model_out_dir, net_type,
-        session, img_size, logger,  lr, steps, batch_size, epochs, augmentation,
+        session, img_size, logger, lr, batch_size, steps, epochs, augmentation,
         pred_img, pred_vid, pred_type):
     """
 
@@ -34,40 +36,44 @@ def run(shape_predictor_path, data_set_dir, data_out_dir, model_out_dir, net_typ
 
     if net_type == "imagenn":
         preprocessor = Preprocessor(classifier, input_shape=input_shape, augmentation=augmentation)
-        neural_net = ImageInputNeuralNet(data_out_dir, model_out_dir, input_shape, lr, batch_size, steps, epochs,
+        neural_net = ImageInputNeuralNet(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps,
+                                         epochs,
                                          preprocessor, logger, session)
 
     elif net_type == "dlibnn":
         preprocessor = DlibInputPreprocessor(classifier, shape_predictor_path, input_shape=input_shape,
                                              augmentation=augmentation)
-        neural_net = DlibPointsInputNeuralNet(data_out_dir, model_out_dir, input_shape, lr, batch_size, steps, epochs,
+        neural_net = DlibPointsInputNeuralNet(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps,
+                                              epochs,
                                               preprocessor, logger, session)
 
     elif net_type == "minn":
         preprocessor = MultiInputPreprocessor(classifier, input_shape=input_shape, augmentation=augmentation)
-        neural_net = MultiInputNeuralNet(data_out_dir, model_out_dir, input_shape, lr, batch_size, steps, epochs,
+        neural_net = MultiInputNeuralNet(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps,
+                                         epochs,
                                          preprocessor, logger, session)
 
     elif net_type == "imlstm":
         preprocessor = SequencialPreprocessor(classifier, input_shape=input_shape, augmentation=augmentation)(
             "dataset/ck-split")
-        neural_net = LSTMNet(data_out_dir, model_out_dir, input_shape, lr, batch_size, steps, epochs,
-                                         preprocessor, logger, session)
+        neural_net = LSTMNet(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps, epochs,
+                             preprocessor, logger, session)
 
     elif net_type == "dliblstm":
         preprocessor = DlibSequencialPreprocessor(classifier, input_shape=input_shape, augmentation=augmentation,
                                                   predictor_path=shape_predictor_path)(
             "dataset/ck-split")
-        neural_net = DlibLSTMNet(data_out_dir, model_out_dir, input_shape, lr, batch_size, steps, epochs,
-                                         preprocessor, logger, session)
+        neural_net = DlibLSTMNet(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps, epochs,
+                                 preprocessor, logger, session)
 
     # elif net_type == "milstm":
     #    preprocessor = MultiInputPreprocessor(classifier, input_shape=input_shape, augmentation=augmentation)
     #   neural_net = MultiInputLSTMNet
 
-    # elif net_type == "caps":
-    #    preprocessor = MultiInputPreprocessor(classifier, input_shape=input_shape, augmentation=augmentation)
-    #   neural_net = MultiInputLSTMNet
+    elif net_type == "caps":
+        preprocessor = Preprocessor(classifier, input_shape=input_shape, augmentation=augmentation)
+        neural_net = CapsNet(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps, epochs,
+                             preprocessor, logger, session, lmd=0.5)
 
     else:
         raise Exception("Network type must be in {mi for a multi-input NN, si for a single-input NN, rnn for LSTM "
