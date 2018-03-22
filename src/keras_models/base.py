@@ -9,8 +9,7 @@ from util.BaseLogger import EmopyLogger
 
 class AbstractNet(object, metaclass=ABCMeta):
     def __init__(self, data_out_dir, model_out_dir, net_type, input_shape, learning_rate, batch_size, steps_per_epoch,
-                 epochs,
-                 preprocessor, logger=None, session='train'):
+                 epochs, preprocessor, logger, session):
         """
         initializes the basic class variables and the non-basic (e.g. different preprocessors) to None
         It is important to set the TAG of the net directly after calling super.init and esp. before initializing the
@@ -78,7 +77,7 @@ class AbstractNet(object, metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def predict(self, face):
+    def predict(self, pred_type, pred_data):
         """
 
         """

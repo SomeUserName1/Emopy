@@ -11,11 +11,11 @@ SESSION = 'train'  # this value should be 'init_data', 'train' or 'predict'
 IMG_SIZE = (64, 64)
 
 # Training & Testing Setup
-LEARNING_RATE = 1e-4
-BATCH_SIZE = 64  # Batch sized used for training.
+LEARNING_RATE = 0.0001
+BATCH_SIZE = 32  # Batch sized used for training.
 STEPS_PER_EPOCH = 500
-EPOCHS = 50
-AUGMENTATION = True
+EPOCHS = 15
+AUGMENTATION = False
 
 # Prediction Setup
 PREDICTION_IMAGE = '0.png'

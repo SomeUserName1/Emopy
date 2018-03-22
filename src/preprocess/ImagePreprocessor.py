@@ -78,6 +78,9 @@ class Preprocessor(AbstractPreprocessor):
         assert len(self.test_image_emotions) == len(
             self.test_image_paths), "number of test inputs are not equal to test labels"
 
+        print("training images: %s", len(self.train_image_paths))
+        print("testing images: %s", len(self.test_image_paths))
+
         self.train_image_emotions = np.array(self.train_image_emotions)
         self.train_image_paths = np.array(self.train_image_paths)
         self.test_images = self.get_images(self.test_image_paths).reshape(-1, self.input_shape[0], self.input_shape[1],

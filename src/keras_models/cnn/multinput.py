@@ -46,8 +46,7 @@ class MultiInputNeuralNet(AbstractNet):
         image_layer = PReLU()(image_layer)
         image_layer = BatchNormalization()(image_layer)
         image_layer = MaxPooling2D(pool_size=(2, 2))(image_layer)
-        image_layer = Conv2D(32, (1, 1), padding="valid", kernel_initializer="glorot_normal") \
-            (image_layer)
+        image_layer = Conv2D(32, (1, 1), padding="valid", kernel_initializer="glorot_normal")(image_layer)
         image_layer = PReLU()(image_layer)
         image_layer = BatchNormalization()(image_layer)
         image_layer = Conv2D(64, (3, 3), padding="valid", kernel_initializer="glorot_normal")(

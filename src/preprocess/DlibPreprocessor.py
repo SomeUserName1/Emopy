@@ -3,26 +3,27 @@ from __future__ import print_function
 import dlib
 import numpy as np
 
-from preprocess.image_input import Preprocessor
+from preprocess.ImagePreprocessor import Preprocessor
 from preprocess.feature_extraction import DlibFeatureExtractor
 
 
-class MultiInputPreprocessor(Preprocessor):
+class DlibInputPreprocessor(Preprocessor):
     """"Preprocessor extracts dlib points, dlib points distance and dlib points angle from 
     centroid.
     
-    Args:
-        input_shape : tuple
-            shape of input images to generate
-        classifier : util.Classifier
-            classifier used for classifying emotions
-        batch_size : int
-            batch size for generating batch of images
-        verbose    : boolean
-            if true print logs to screen
+    parameters
+    ----------
+    input_shape : tuple
+        shape of input images to generate
+    classifier : util.Classifier
+        classifier used for classifying emotions
+    batch_size : int
+        batch size for generating batch of images
+    verbose    : boolean
+        if true print logs to screen
     """
 
-    def __init__(self, classifier, input_shape=None, batch_size=32, augmentation=False, verbose=True):
+    def __init__(self, classifier, predictor, input_shape=None, batch_size=32, augmentation=False, verbose=True):
         """
 
         Args:
@@ -33,7 +34,7 @@ class MultiInputPreprocessor(Preprocessor):
             verbose:
         """
         Preprocessor.__init__(self, classifier, input_shape, batch_size, augmentation, verbose)
-        self.predictor = dlib.shape_predictor()
+        self.predictor = dlib.shape_predictor(predictor)
         self.feature_extractor = DlibFeatureExtractor(self.predictor)
 
     def __call__(self, path):
@@ -55,7 +56,6 @@ class MultiInputPreprocessor(Preprocessor):
         """
 
         """
-
         assert self.called, "Preprocessor should be called with path of dataset first to use flow method."
         while True:
             indexes = self.generate_indexes(True)
@@ -68,4 +68,4 @@ class MultiInputPreprocessor(Preprocessor):
                                                                                            self.input_shape[2])
                 current_images, dpoints, dpointsDists, dpointsAngles = self.feature_extractor.extract(current_images)
                 current_emotions = np.eye(self.classifier.get_num_class())[current_emotions]
-                yield [current_images, dpoints, dpointsDists, dpointsAngles], current_emotions
+                yield [dpoints, dpointsDists, dpointsAngles], current_emotions
