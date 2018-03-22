@@ -77,7 +77,7 @@ class AbstractNet(object, metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def predict(self, pred_type, pred_data):
+    def predict(self, faces):
         """
 
         """

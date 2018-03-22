@@ -67,9 +67,9 @@ class CapsNet(AbstractNet):
         manipulate_model = Model([input_layer, y, noise], decoder(masked_noised_y))
 
         train_model.compile(optimizer=keras.optimizers.Adam(lr=self.learning_rate),
-                            loss=[self.margin_loss, 'mse'],
-                            loss_weights=[1., 0.392],
-                           metrics=['accuracy'])
+                            loss=[keras.losses.categorical_crossentropy, 'mse'],
+                            loss_weights=[1., 0.2727272],
+                            metrics=['accuracy'])
 
         return train_model  # , eval_model, manipulate_model
 

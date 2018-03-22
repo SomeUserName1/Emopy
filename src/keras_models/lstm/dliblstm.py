@@ -59,3 +59,47 @@ class DlibLSTMNet(AbstractNet):
     def predict(self, dlib_features):
         emotions = self.model.predict(dlib_features)
         return emotions
+
+    def proc_webcam(self):
+        cap = cv2.VideoCapture(-1)
+
+        print("opening camera")
+
+        current_sequence = np.zeros((maxSequenceLength, 68, 2, 1))
+        currentIndex = 0
+
+        currentEmotion = ""
+        while cap.isOpened():
+            ret, frame = cap.read()
+            currentWidth = frame.shape[1]
+            width = 600
+            ratio = currentWidth / float(width)
+            height = frame.shape[0] / float(ratio)
+            frame = cv2.resize(frame, (width, int(height)))
+            faces, rectangles = preprocessor.get_faces(frame, face_detector)
+            if (len(faces) > 0):
+                face, rectangle = faces[0], rectangles[0]
+                face = preprocessor.sanitize(face)
+                dlib_points = preprocessor.get_face_dlib_points(face)
+                # draw_landmarks(face,dlib_points)
+                # cv2.imshow("Face",face)
+                current_sequence[currentIndex:currentIndex + 2] = [np.array(np.expand_dims(dlib_points, 2)),
+                                                                   np.expand_dims(dlib_points, 2)]
+                currentIndex += 2
+                # sequencialQueue.put(face)
+                postProcessor.overlay(frame, [rectangle], [currentEmotion])
+            else:
+                current_sequence = np.zeros((maxSequenceLength, 68, 2, 1))
+                currentIndex = 0
+            if currentIndex > maxSequenceLength - 2:
+                current_sequence = current_sequence.astype(np.float32) / IMG_SIZE[0]
+                predictions = neural_net.predict(np.expand_dims(current_sequence, 0))[0]
+                print(predictions)
+                emotion = arg_max(predictions)
+                currentEmotion = preprocessor.classifier.get_string(emotion)
+                current_sequence = np.zeros((maxSequenceLength, 68, 2, 1))
+                currentIndex = 0
+            cv2.imshow("Webcam", frame)
+            if (cv2.waitKey(10) & 0xFF == ord('q')):
+                break
+        cv2.destroyAllWindows()
