@@ -1,7 +1,8 @@
 import cv2
 import keras
 from keras import callbacks as cb
-from keras.layers import Input, Flatten, Dense, Conv2D, BatchNormalization, MaxPooling2D, Dropout, PReLU
+from keras.layers import Input, Flatten, Dense, Conv2D, BatchNormalization, MaxPooling2D, AveragePooling2D, Dropout, \
+    PReLU
 from keras.models import Model
 
 from keras_models.base import AbstractNet
@@ -45,15 +46,9 @@ class MultiInputNeuralNet(AbstractNet):
         image_layer = Conv2D(32, (3, 3), padding="valid", kernel_initializer="glorot_normal")(
             image_layer)
         image_layer = PReLU()(image_layer)
-        image_layer = BatchNormalization()(image_layer)
-        image_layer = MaxPooling2D(pool_size=(2, 2))(image_layer)
-        image_layer = Conv2D(32, (1, 1), padding="valid", kernel_initializer="glorot_normal")(image_layer)
-        image_layer = PReLU()(image_layer)
-        image_layer = BatchNormalization()(image_layer)
         image_layer = Conv2D(64, (3, 3), padding="valid", kernel_initializer="glorot_normal")(
             image_layer)
         image_layer = PReLU()(image_layer)
-        image_layer = BatchNormalization()(image_layer)
         image_layer = Conv2D(128, (3, 3), padding="valid", kernel_initializer="glorot_normal")(image_layer)
         image_layer = PReLU()(image_layer)
         image_layer = BatchNormalization()(image_layer)
@@ -61,60 +56,49 @@ class MultiInputNeuralNet(AbstractNet):
         image_layer = Conv2D(256, (3, 3), padding="valid", kernel_initializer="glorot_normal")(image_layer)
         image_layer = PReLU()(image_layer)
         image_layer = BatchNormalization()(image_layer)
+        image_layer = AveragePooling2D(pool_size=(2, 2))(image_layer)
         image_layer = Flatten()(image_layer)
 
         dlib_points_input_layer = Input(shape=(1, 68, 2))
         dlib_points_layer = Conv2D(32, (1, 3), padding="valid", kernel_initializer="glorot_normal")(
             dlib_points_input_layer)
-        dlib_points_layer = PReLU()(dlib_points_layer)
-        dlib_points_layer = MaxPooling2D(pool_size=(1, 2))(dlib_points_layer)
-        dlib_points_layer = Conv2D(32, (1, 1), padding="valid", kernel_initializer="glorot_normal")(dlib_points_layer)
-        dlib_points_layer = PReLU()(dlib_points_layer)
         dlib_points_layer = Conv2D(64, (1, 3), padding="valid", kernel_initializer="glorot_normal")(
             dlib_points_layer)
         dlib_points_layer = PReLU()(dlib_points_layer)
         dlib_points_layer = Conv2D(128, (1, 3), padding="valid", kernel_initializer="glorot_normal")(dlib_points_layer)
         dlib_points_layer = PReLU()(dlib_points_layer)
-        dlib_points_layer = MaxPooling2D(pool_size=(1, 2))(dlib_points_layer)
-
+        dlib_points_layer = AveragePooling2D(pool_size=(1, 2))(dlib_points_layer)
+        dlib_points_dist_layer = Conv2D(256, (1, 3), padding="valid",
+                                        kernel_initializer="glorot_normal")(dlib_points_layer)
+        dlib_points_dist_layer = PReLU()(dlib_points_dist_layer)
+        dlib_points_layer = AveragePooling2D(pool_size=(1, 2))(dlib_points_dist_layer)
         dlib_points_layer = Flatten()(dlib_points_layer)
 
         dlib_points_dist_input_layer = Input(shape=(1, 68, 1))
         dlib_points_dist_layer = Conv2D(32, (1, 3), padding="valid", kernel_initializer="glorot_normal")(
             dlib_points_dist_input_layer)
-        dlib_points_dist_layer = PReLU()(dlib_points_dist_layer)
-        dlib_points_dist_layer = MaxPooling2D(pool_size=(1, 2))(dlib_points_dist_layer)
-        dlib_points_dist_layer = Conv2D(32, (1, 1), padding="valid", kernel_initializer="glorot_normal") \
-            (dlib_points_dist_layer)
-        dlib_points_dist_layer = PReLU()(dlib_points_dist_layer)
         dlib_points_dist_layer = Conv2D(64, (1, 3), padding="valid", kernel_initializer="glorot_normal")(
             dlib_points_dist_layer)
-        dlib_points_dist_layer = PReLU()(dlib_points_dist_layer)
         dlib_points_dist_layer = Conv2D(128, (1, 3), padding="valid", kernel_initializer="glorot_normal")(
             dlib_points_dist_layer)
         dlib_points_dist_layer = PReLU()(dlib_points_dist_layer)
-
-        dlib_points_dist_layer = MaxPooling2D(pool_size=(1, 2))(dlib_points_dist_layer)
+        dlib_points_dist_layer = AveragePooling2D(pool_size=(1, 2))(dlib_points_dist_layer)
         dlib_points_dist_layer = Conv2D(256, (1, 3), padding="valid",
                                         kernel_initializer="glorot_normal")(dlib_points_dist_layer)
         dlib_points_dist_layer = PReLU()(dlib_points_dist_layer)
+        dlib_points_dist_layer = AveragePooling2D(pool_size=(1, 2))(dlib_points_dist_layer)
         dlib_points_dist_layer = Flatten()(dlib_points_dist_layer)
 
         dlib_points_angle_input_layer = Input(shape=(1, 68, 1))
         dlib_points_angle_layer = Conv2D(32, (1, 3), padding="valid", kernel_initializer="glorot_normal")(
             dlib_points_angle_input_layer)
-        dlib_points_angle_layer = PReLU()(dlib_points_angle_layer)
-        dlib_points_angle_layer = MaxPooling2D(pool_size=(1, 2))(dlib_points_angle_layer)
-        dlib_points_angle_layer = Conv2D(32, (1, 1), padding="valid", kernel_initializer="glorot_normal") \
-            (dlib_points_angle_layer)
-        dlib_points_angle_layer = PReLU()(dlib_points_angle_layer)
         dlib_points_angle_layer = Conv2D(64, (1, 3), padding="valid", kernel_initializer="glorot_normal")(
             dlib_points_angle_layer)
         dlib_points_angle_layer = PReLU()(dlib_points_angle_layer)
         dlib_points_angle_layer = Conv2D(128, (1, 3), padding="valid", kernel_initializer="glorot_normal")(
             dlib_points_angle_layer)
         dlib_points_angle_layer = PReLU()(dlib_points_angle_layer)
-        dlib_points_angle_layer = MaxPooling2D(pool_size=(1, 2))(dlib_points_angle_layer)
+        dlib_points_angle_layer = AveragePooling2D(pool_size=(1, 2))(dlib_points_angle_layer)
         dlib_points_angle_layer = Conv2D(256, (1, 3), padding="valid",
                                          kernel_initializer="glorot_normal")(dlib_points_angle_layer)
         dlib_points_angle_layer = PReLU()(dlib_points_angle_layer)
@@ -123,11 +107,6 @@ class MultiInputNeuralNet(AbstractNet):
         merged_layers = keras.layers.concatenate(
             [image_layer, dlib_points_layer, dlib_points_dist_layer, dlib_points_angle_layer])
 
-        merged_layers = Dense(4096)(merged_layers)
-        merged_layers = PReLU()(merged_layers)
-        merged_layers = Dropout(0.1)(merged_layers)
-        merged_layers = Dense(4024)(merged_layers)
-        merged_layers = PReLU()(merged_layers)
         merged_layers = Dense(2048)(merged_layers)
         merged_layers = PReLU()(merged_layers)
         merged_layers = Dropout(0.1)(merged_layers)

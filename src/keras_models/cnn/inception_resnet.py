@@ -28,7 +28,7 @@ class InceptionResNet(MultiInputNeuralNet):
         x = Dense(4096)(res_out)
         x = PReLU()(x)
         x = Dropout(0.382)(x)
-        x = Dense(4024)(x)
+        x = Dense(4096)(x)
         x = PReLU()(x)
         x = Dense(2048)(x)
         x = PReLU()(x)

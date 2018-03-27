@@ -6,9 +6,9 @@ DATA_OUT_DIR = "E:/DataSets/EmoPyData"
 MODEL_OUT_DIR = "E:/models/EmoPy"
 
 # Session Setup
-NETWORK_TYPE = "minn"  # mi for multi input or si for single input
+NETWORK_TYPE = "vgg-net"  # mi for multi input or si for single input
 SESSION = 'train'  # this value should be 'init_data', 'train' or 'predict'
-IMG_SIZE = (64, 64)
+IMG_SIZE = (48, 48)
 
 # Training & Testing Setup
 LEARNING_RATE = 1e-4

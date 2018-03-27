@@ -13,6 +13,7 @@ from keras_models.cnn.dlib_inputs import DlibPointsInputNeuralNet
 from keras_models.cnn.img_input import ImageInputNeuralNet
 from keras_models.cnn.inception_resnet import InceptionResNet
 from keras_models.cnn.multinput import MultiInputNeuralNet
+from keras_models.cnn.vggface import VGGFaceEmopyNet
 from preprocess.CapsPreprocessor import CapsPreprocessor
 from preprocess.DlibPreprocessor import DlibInputPreprocessor
 from preprocess.ImagePreprocessor import Preprocessor
@@ -74,12 +75,17 @@ def run(shape_predictor_path, data_set_dir, data_out_dir, model_out_dir, net_typ
         neural_net = CapsNet(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps, epochs,
                              preprocessor, logger, session, lmd=0.5)
 
-    elif net_type == "incresnet":
+    elif net_type == "inc-res-net":
         preprocessor = MultiInputPreprocessor(classifier, shape_predictor_path, input_shape=input_shape,
                                               augmentation=augmentation)
         neural_net = InceptionResNet(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps, epochs,
                                      preprocessor, logger, session)
 
+    elif net_type == "vgg-net":
+        preprocessor = MultiInputPreprocessor(classifier, shape_predictor_path, input_shape=input_shape,
+                                              augmentation=augmentation)
+        neural_net = VGGFaceEmopyNet(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps, epochs,
+                                     preprocessor, logger, session)
     # elif net_type == "imlstm":
     #     preprocessor = SequencialPreprocessor(classifier, input_shape=input_shape, augmentation=augmentation)(
     #         "dataset/ck-split")

@@ -61,7 +61,7 @@ class MultiInputPreprocessor(Preprocessor):
             indexes = self.generate_indexes(True)
             for i in range(0, len(indexes) - self.batch_size, self.batch_size):
                 current_indexes = indexes[i:i + self.batch_size]
-                current_paths = self.train_images[current_indexes]
+                current_paths = self.train_image_paths[current_indexes]
                 current_emotions = self.train_image_emotions[current_indexes]
                 current_images = self.get_images(current_paths, self.augmentation).reshape(-1, self.input_shape[0],
                                                                                            self.input_shape[1],
