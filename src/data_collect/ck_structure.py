@@ -4,7 +4,6 @@ import glob
 import os
 import random
 import shutil
-import sys
 
 emotions_out = ['anger', 'neutral', 'disgust', 'fear', 'happy', 'sad', 'surprise']
 
@@ -20,6 +19,7 @@ def make_dirs(root_path):
         for emotion in emotions_out:
             if not os.path.exists(path + '/' + emotion):
                 os.mkdir(path + '/' + emotion)
+
 
 def create_folder_structure(ck_dir, out_dir):
     """
@@ -50,6 +50,7 @@ def add_emotion(path, train_out_dir):
     """
         Copies the image in the correct folder according to the label
 
+    :param train_out_dir:
     :param path: Path of the emotion.txt file to be appended to the data set
     """
     emotion_txt = os.open(path, os.O_RDONLY)

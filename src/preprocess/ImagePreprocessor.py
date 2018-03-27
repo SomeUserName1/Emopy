@@ -167,7 +167,7 @@ class Preprocessor(AbstractPreprocessor):
         for i in range(len(paths)):
             img = cv2.imread(paths[i])
             img = self.sanitize(img)
-            if (augmentation):
+            if augmentation:
                 img_shape = img.shape
                 img = img.reshape((-1, img_shape[0], img_shape[1]))
                 img = self.data_generator.random_transform(img)

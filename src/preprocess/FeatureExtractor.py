@@ -32,13 +32,11 @@ class ImageFeatureExtractor(FeatureExtractor):
     """
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
         """
 
-        Args:
-            kwargs:
         """
-        FeatureExtractor.__init__(self, **kwargs)
+        FeatureExtractor.__init__(self)
 
     def extract(self, images):
         """
@@ -53,18 +51,69 @@ class ImageFeatureExtractor(FeatureExtractor):
         return new_images
 
 
+def angle_between(p1, p2):
+    """
+
+    Args:
+        p1:
+        p2:
+
+    Returns:
+
+    """
+    ang1 = np.arctan2(*p1[::-1])
+    ang2 = np.arctan2(*p2[::-1])
+    return (ang1 - ang2) % (2 * np.pi)
+
+
+def get_angles(dlib_points, centroid):
+    """
+
+    Args:
+        dlib_points:
+        centroid:
+
+    Returns:
+
+    """
+    output = np.zeros(68)
+    for i in range(68):
+        angle = angle_between(dlib_points[i], centroid)
+        output[i] = angle
+    return output
+
+
+def get_distances_angles(all_dlib_points, centroids):
+    """
+
+    Args:
+        all_dlib_points:
+        centroids:
+
+    Returns:
+
+    """
+    all_distances = np.zeros((len(all_dlib_points), 1, 68, 1))
+    all_angles = np.zeros((len(all_dlib_points), 1, 68, 1))
+    for i in range(len(all_dlib_points)):
+        dists = np.linalg.norm(centroids[i] - all_dlib_points[i][0], axis=1)
+        angles = get_angles(all_dlib_points[i][0], centroids[i])
+        all_distances[i][0] = dists.reshape(1, 68, 1)
+        all_angles[i][0] = angles.reshape(1, 68, 1)
+    return all_distances, all_angles
+
+
 class DlibFeatureExtractor(FeatureExtractor):
     """
     """
 
-    def __init__(self, predictor, **kwargs):
+    def __init__(self, predictor):
         """
 
         Args:
             predictor:
-            kwargs:
         """
-        FeatureExtractor.__init__(self, **kwargs)
+        FeatureExtractor.__init__(self)
         self.predictor = predictor
 
     def get_dlib_points(self, image):
@@ -104,55 +153,6 @@ class DlibFeatureExtractor(FeatureExtractor):
             output[i][0] = dlib_points
         return output, centroids
 
-    def get_distances_angles(self, all_dlib_points, centroids):
-        """
-
-        Args:
-            all_dlib_points:
-            centroids:
-
-        Returns:
-
-        """
-        all_distances = np.zeros((len(all_dlib_points), 1, 68, 1))
-        all_angles = np.zeros((len(all_dlib_points), 1, 68, 1))
-        for i in range(len(all_dlib_points)):
-            dists = np.linalg.norm(centroids[i] - all_dlib_points[i][0], axis=1)
-            angles = self.get_angles(all_dlib_points[i][0], centroids[i])
-            all_distances[i][0] = dists.reshape(1, 68, 1)
-            all_angles[i][0] = angles.reshape(1, 68, 1)
-        return all_distances, all_angles
-
-    def angle_between(self, p1, p2):
-        """
-
-        Args:
-            p1:
-            p2:
-
-        Returns:
-
-        """
-        ang1 = np.arctan2(*p1[::-1])
-        ang2 = np.arctan2(*p2[::-1])
-        return (ang1 - ang2) % (2 * np.pi)
-
-    def get_angles(self, dlib_points, centroid):
-        """
-
-        Args:
-            dlib_points:
-            centroid:
-
-        Returns:
-
-        """
-        output = np.zeros((68))
-        for i in range(68):
-            angle = self.angle_between(dlib_points[i], centroid)
-            output[i] = angle
-        return output
-
     def extract(self, images):
         """
 
@@ -165,7 +165,7 @@ class DlibFeatureExtractor(FeatureExtractor):
 
         dlib_points, centroids = self.to_dlib_points(images)
 
-        distances, angles = self.get_distances_angles(dlib_points, centroids)
+        distances, angles = get_distances_angles(dlib_points, centroids)
 
         IMAGE_CENTER = np.array(IMG_SIZE) / 2
         IMG_WIDTH = IMG_SIZE[1]
@@ -183,7 +183,7 @@ class DlibFeatureExtractor(FeatureExtractor):
         return images, dlib_points, distances, angles
 
 
-##### face extractor (init and main from data_collect) where is that called?
+# face extractor (init and main from data_collect) where is that called?
 # call from main:
 # collect_faces("/home/mtk/iCog/projects/emopy/test-videos/1.mp4", "/home/mtk/dataset/from_videos")
 

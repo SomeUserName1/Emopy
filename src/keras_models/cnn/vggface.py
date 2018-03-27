@@ -12,18 +12,21 @@ class VGGFaceEmopyNet(AbstractNet):
     according to http://www.robots.ox.ac.uk/%7Evgg/software/vgg_face/.
     """
 
-    def __init__(self, data_out_dir, model_out_dir, input_shape, learning_rate, batch_size, steps_per_epoch, epochs,
-                 preprocessor=None, logger=None, session='train', post_processor=None):
-        super(VGGFaceEmopyNet, self).__init__(data_out_dir, model_out_dir, input_shape, learning_rate, batch_size,
-                                              steps_per_epoch, epochs,
-                                              preprocessor=None, logger=None, session='train')
+    def predict(self, faces):
+        pass
+
+    def __init__(self, data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps, epochs,
+                 preprocessor, logger, session):
+        super(VGGFaceEmopyNet, self).__init__(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps,
+                                              epochs, preprocessor, logger, session)
         self.TAG = "vgg"
         self.max_sequence_length = 10
-        self.postProcessor = post_processor
         self.feature_extractors = ['image']
         self.number_of_class = self.preprocessor.classifier.get_num_class()
-        super(VGGFaceEmopyNet, self).init_logger(self.logger, self.model_out_dir, self.TAG)
         super(VGGFaceEmopyNet, self).init_model(self.session)
+
+    def train(self):
+        pass
 
     def build(self):
         """

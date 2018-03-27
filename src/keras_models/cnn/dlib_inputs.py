@@ -20,7 +20,6 @@ class DlibPointsInputNeuralNet(AbstractNet):
             input_shape:
             preprocessor:
             logger:
-            train:
         """
         super(DlibPointsInputNeuralNet, self).__init__(data_out_dir, model_out_dir, net_type, input_shape,
                                                        learning_rate,

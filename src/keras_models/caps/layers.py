@@ -171,6 +171,9 @@ class CapsuleLayer(Layer):
 def PrimaryCap(inputs, dim_capsule, n_channels, kernel_size, strides, padding):
     """
     Apply Conv2D `n_channels` times and concatenate all capsules
+    :param kernel_size:
+    :param strides:
+    :param padding:
     :param inputs: 4D tensor, shape=[None, width, height, channels]
     :param dim_capsule: the dim of the output vector of capsule
     :param n_channels: the number of types of capsules

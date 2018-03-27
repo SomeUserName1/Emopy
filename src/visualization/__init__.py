@@ -125,8 +125,8 @@ def generate_features(model, image, output_dir):
             os.makedirs(os.path.join(output_dir, layer_name))
         if layer_features is not None:
             layer_image_paths = []
-            for j in range(len(layer_features)):
-                img = layer_features[j]
+            for j in enumerate(layer_features):
+                img = j
                 img = np.array(img)
                 layer_image_paths.append("f" + str(j) + ".png")
                 cv2.imwrite(os.path.join(output_dir, layer_name, "f" + str(j) + ".png"), img)
@@ -136,7 +136,7 @@ def generate_features(model, image, output_dir):
     with open("/home/mtk/iCog/projects/visualization/nodejs/emopy/test.json", "w+") as test_file:
         test_file.write(json_string)
 
-
-        # json.dump(json_layers, codecs.open("test.json", 'w', encoding='utf-8'), separators=(',', ':'), sort_keys=True, indent=4)
+        # json.dump(json_layers, codecs.open("test.json", 'w', encoding='utf-8'),
+        # separators=(',', ':'), sort_keys=True, indent=4)
 
         # print layer1_features.shape

@@ -95,7 +95,6 @@ class DlibSequencialPreprocessor(SequencialPreprocessor):
         test_sequences_images = np.zeros(
             (len(test_seq), self.max_sequence_length, self.input_shape[0], self.input_shape[1], self.input_shape[2]),
             dtype=np.uint8)
-        num_class = self.classifier.get_num_class()
         self.test_sequence_labels = np.zeros((len(test_seq_label), 6))
         print("loading test images")
         for i in range(len(test_seq)):
@@ -122,7 +121,6 @@ class DlibSequencialPreprocessor(SequencialPreprocessor):
                 sequences = self.train_sequences[currentIndexes]
                 sequences_labels = self.train_sequence_labels[currentIndexes]
                 sequences_dirs = []
-                y = np.zeros((len(sequences_labels), 6))
                 for j in range(len(sequences)):
                     sequences_dirs.append(os.path.join(self.dataset_path, "train", sequences_labels[j], sequences[j]))
                 X = self.get_sequences_images(sequences_dirs)

@@ -1,8 +1,7 @@
-import cv2
 import keras
 from keras.layers import LSTM, Dense, Conv2D, TimeDistributed
 from keras.layers import MaxPooling2D, Flatten
-from keras.models import Sequential, model_from_json
+from keras.models import Sequential
 
 from keras_models.base import AbstractNet
 
@@ -77,27 +76,4 @@ class LSTMNet(AbstractNet):
         emotions = self.model.predict(face)[0]
         return emotions
 
-    def process_web_cam(self):
-        model = model_from_json(open("models/rnn/rnn-0.json").read())
-        model.load_weights("models/rnn/rnn-0.h5")
-        cap = cv2.VideoCapture(-1)
-        cap.set(cv2.CAP_PROP_FRAME_WIDTH, 300)
-        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
-        sequences = np.zeros((self.max_sequence_length, self.input_shape[0], self.input_shape[1], self.input_shape[2]))
-        while cap.isOpened():
-            while len(sequences) < self.max_sequence_length:
-                ret, frame = cap.read()
-                frame = cv2.resize(frame, (300, 240))
-                faces, rectangles = self.preprocessor.get_faces(frame, face_detector)
-                face = faces[0]
-                sequences
-            predictions = []
-            for i in range(len(faces)):
-                face = preprocessor.sanitize(faces[i])
-                predictions.append(neuralNet.predict(face))
 
-            self.postProcessor = self.postProcessor(img, rectangles, predictions)
-            cv2.imshow("Image", img)
-            if (cv2.waitKey(10) & 0xFF == ord('q')):
-                break
-            cv2.destroyAllWindows()

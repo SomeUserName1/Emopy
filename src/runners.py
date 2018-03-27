@@ -63,7 +63,8 @@ def run(shape_predictor_path, data_set_dir, data_out_dir, model_out_dir, net_typ
                                               preprocessor, logger, session)
 
     elif net_type == "minn":
-        preprocessor = MultiInputPreprocessor(classifier, input_shape=input_shape, augmentation=augmentation)
+        preprocessor = MultiInputPreprocessor(classifier, shape_predictor_path, input_shape=input_shape,
+                                              augmentation=augmentation)
         neural_net = MultiInputNeuralNet(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps,
                                          epochs,
                                          preprocessor, logger, session)
@@ -74,7 +75,8 @@ def run(shape_predictor_path, data_set_dir, data_out_dir, model_out_dir, net_typ
                              preprocessor, logger, session, lmd=0.5)
 
     elif net_type == "incresnet":
-        preprocessor = MultiInputPreprocessor(classifier, input_shape=input_shape, augmentation=augmentation)
+        preprocessor = MultiInputPreprocessor(classifier, shape_predictor_path, input_shape=input_shape,
+                                              augmentation=augmentation)
         neural_net = InceptionResNet(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps, epochs,
                                      preprocessor, logger, session)
 
@@ -144,6 +146,29 @@ def run(shape_predictor_path, data_set_dir, data_out_dir, model_out_dir, net_typ
                 if cv2.waitKey(10) & 0xFF == ord('q'):
                     break
             cv2.destroyAllWindows()
+
+        elif pred_type == "web_cam":
+            rectangles = None
+            cap = cv2.VideoCapture(-1)
+            cap.set(cv2.CAP_PROP_FRAME_WIDTH, 300)
+            cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
+            sequences = np.zeros(
+                (maxSequenceLength, input_shape[0], input_shape[1], input_shape[2]))
+            while cap.isOpened():
+                while len(sequences) < maxSequenceLength:
+                    ret, frame = cap.read()
+                    frame = cv2.resize(frame, (300, 240))
+                    faces, rectangles = preprocessor.get_faces(frame, face_detector)
+                predictions = []
+                for i in range(len(faces)):
+                    face = preprocessor.sanitize(faces[i])
+                    predictions.append(neural_net.predict(face))
+
+                post_processor.overlay(frame, rectangles, predictions)
+                cv2.imshow("Image", frame)
+                if cv2.waitKey(10) & 0xFF == ord('q'):
+                    break
+                cv2.destroyAllWindows()
 
 
 def show_sequence_images(path):

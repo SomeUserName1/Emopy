@@ -22,7 +22,7 @@ class MultiInputPreprocessor(Preprocessor):
             if true print logs to screen
     """
 
-    def __init__(self, classifier, input_shape=None, batch_size=32, augmentation=False, verbose=True):
+    def __init__(self, classifier, predictor_path, input_shape=None, batch_size=32, augmentation=False, verbose=True):
         """
 
         Args:
@@ -33,7 +33,7 @@ class MultiInputPreprocessor(Preprocessor):
             verbose:
         """
         Preprocessor.__init__(self, classifier, input_shape, batch_size, augmentation, verbose)
-        self.predictor = dlib.shape_predictor()
+        self.predictor = dlib.shape_predictor(predictor_path)
         self.feature_extractor = DlibFeatureExtractor(self.predictor)
 
     def __call__(self, path):
@@ -61,7 +61,7 @@ class MultiInputPreprocessor(Preprocessor):
             indexes = self.generate_indexes(True)
             for i in range(0, len(indexes) - self.batch_size, self.batch_size):
                 current_indexes = indexes[i:i + self.batch_size]
-                current_paths = self.train_image_paths[current_indexes]
+                current_paths = self.train_images[current_indexes]
                 current_emotions = self.train_image_emotions[current_indexes]
                 current_images = self.get_images(current_paths, self.augmentation).reshape(-1, self.input_shape[0],
                                                                                            self.input_shape[1],

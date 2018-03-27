@@ -2,7 +2,7 @@ import keras
 import numpy as np
 from keras import backend as K
 from keras import callbacks as cb
-from keras.layers import Conv2D, Input, Dense, Reshape, Add
+from keras.layers import Conv2D, Input, Dense, Reshape  # Add
 from keras.models import Model, Sequential
 
 from keras_models.base import AbstractNet
@@ -47,7 +47,7 @@ class CapsNet(AbstractNet):
         y = Input(shape=(self.number_of_classes,))
         masked_by_y = Mask()(
             [emotion_caps, y])  # The true label is used to mask the output of capsule layer. For training
-        masked = Mask()(emotion_caps)  # Mask using the capsule with maximal length. For prediction
+        # masked = Mask()(emotion_caps)  # Mask using the capsule with maximal length. For prediction
 
         # Shared Decoder model in training and prediction
         decoder = Sequential(name='decoder')
@@ -58,13 +58,13 @@ class CapsNet(AbstractNet):
 
         # Models for training and evaluation (prediction)
         train_model = Model([input_layer, y], [out_caps, decoder(masked_by_y)])
-        eval_model = Model(input_layer, [out_caps, decoder(masked)])
+        # eval_model = Model(input_layer, [out_caps, decoder(masked)])
 
         # manipulate model
-        noise = Input(shape=(self.number_of_classes, 16))
-        noised_digitcaps = Add()([emotion_caps, noise])
-        masked_noised_y = Mask()([noised_digitcaps, y])
-        manipulate_model = Model([input_layer, y, noise], decoder(masked_noised_y))
+        # noise = Input(shape=(self.number_of_classes, 16))
+        # noised_digitcaps = Add()([emotion_caps, noise])
+        # masked_noised_y = Mask()([noised_digitcaps, y])
+        # manipulate_model = Model([input_layer, y, noise], decoder(masked_noised_y))
 
         train_model.compile(optimizer=keras.optimizers.Adam(lr=self.learning_rate),
                             loss=[keras.losses.categorical_crossentropy, 'mse'],
@@ -74,10 +74,10 @@ class CapsNet(AbstractNet):
         return train_model  # , eval_model, manipulate_model
 
     def train(self):
-        dir = self.model_out_dir + '/' + self.net_type + '/'
-        tb = cb.TensorBoard(log_dir=dir + '/tensorboard-logs',
+        _dir = self.model_out_dir + '/' + self.net_type + '/'
+        tb = cb.TensorBoard(log_dir=_dir + '/tensorboard-logs',
                             batch_size=self.batch_size, histogram_freq=int(10))
-        checkpoint = cb.ModelCheckpoint(dir + '/weights-{epoch:02d}.h5', monitor='pred_acc',
+        checkpoint = cb.ModelCheckpoint(_dir + '/weights-{epoch:02d}.h5', monitor='pred_acc',
                                         save_best_only=True, save_weights_only=True, verbose=1)
         lr_decay = cb.LearningRateScheduler(schedule=lambda epoch: self.learning_rate * (self.lr_decay ** epoch))
 
@@ -105,10 +105,10 @@ class CapsNet(AbstractNet):
 
         """
 
-        L = y_true * K.square(K.maximum(0., 0.9 - y_pred)) + \
-            self.lmd * (1 - y_true) * K.square(K.maximum(0., y_pred - 0.1))
+        loss = y_true * K.square(K.maximum(0., 0.9 - y_pred)) + \
+               self.lmd * (1 - y_true) * K.square(K.maximum(0., y_pred - 0.1))
 
-        return K.mean(K.sum(L, 1))
+        return K.mean(K.sum(loss, 1))
 
     def predict(self, face):
         assert face.shape == self.input_shape[:-1], "Face image size should be " + str(self.input_shape[:-1])

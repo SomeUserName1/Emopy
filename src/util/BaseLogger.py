@@ -14,12 +14,14 @@ class EmopyLogger(object):
     """
     """
 
-    def __init__(self, output_files=[sys.stdout]):
+    def __init__(self, output_files=None):
         """
 
         Args:
             output_files:
         """
+        if output_files is None:
+            output_files = [sys.stdout]
         self.output_files = output_files
 
     def log(self, string):
@@ -47,8 +49,9 @@ class EmopyLogger(object):
         """
 
         Args:
-            models_local_folder:
-            score:
+            :param score:
+            :param models_local_folder:
+            :param model:
         """
         model_number = np.fromfile(os.path.join(MODEL_OUT_DIR, models_local_folder, "model_number.txt"), dtype=int)
         model_file_name = models_local_folder + "-" + str(model_number[0] - 1)
