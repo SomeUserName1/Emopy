@@ -3,8 +3,8 @@ from __future__ import print_function
 import dlib
 import numpy as np
 
+from preprocess.FeatureExtractor import DlibFeatureExtractor
 from preprocess.ImagePreprocessor import Preprocessor
-from preprocess.feature_extraction import DlibFeatureExtractor
 
 
 class MultiInputPreprocessor(Preprocessor):

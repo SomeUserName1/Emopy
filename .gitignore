@@ -1,13 +1,3 @@
 *.pyc
 .idea/*
 models/*
-
-!models/caps/caps.log
-!models/caps/caps-1.h5
-!models/caps/caps-1.json
-!models/caps/caps-1.png
-
-!models/minn/minn.log
-!models/minn/minn-15.h5
-!models/minn/minn-15.json
-!models/minn/minn-15.png

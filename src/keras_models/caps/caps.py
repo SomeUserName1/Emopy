@@ -10,6 +10,7 @@ from keras_models.caps.layers import Length, CapsuleLayer, PrimaryCap, Mask
 
 K.set_image_data_format('channels_last')
 
+
 class CapsNet(AbstractNet):
     """
     """
@@ -25,7 +26,6 @@ class CapsNet(AbstractNet):
         super(CapsNet, self).__init__(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps, epochs,
                                       preprocessor, logger, session)
 
-        print("caps init", self.preprocessor)
         self.lmd = lmd
         self.feature_extractors = ["image"]
         self.lr_decay = 0.9
@@ -76,7 +76,7 @@ class CapsNet(AbstractNet):
     def train(self):
         dir = self.model_out_dir + '/' + self.net_type + '/'
         tb = cb.TensorBoard(log_dir=dir + '/tensorboard-logs',
-                            batch_size=self.batch_size, histogram_freq=int(True))
+                            batch_size=self.batch_size, histogram_freq=int(10))
         checkpoint = cb.ModelCheckpoint(dir + '/weights-{epoch:02d}.h5', monitor='pred_acc',
                                         save_best_only=True, save_weights_only=True, verbose=1)
         lr_decay = cb.LearningRateScheduler(schedule=lambda epoch: self.learning_rate * (self.lr_decay ** epoch))
@@ -111,4 +111,8 @@ class CapsNet(AbstractNet):
         return K.mean(K.sum(L, 1))
 
     def predict(self, face):
-        pass
+        assert face.shape == self.input_shape[:-1], "Face image size should be " + str(self.input_shape[:-1])
+        face = face.reshape(-1, 64, 64, 1)
+        face = face.astype(np.float32) / 255
+        emotions = self.model.predict(face)
+        return emotions

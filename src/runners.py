@@ -11,13 +11,14 @@ from config import *
 from keras_models.caps.caps import CapsNet
 from keras_models.cnn.dlib_inputs import DlibPointsInputNeuralNet
 from keras_models.cnn.img_input import ImageInputNeuralNet
+from keras_models.cnn.inception_resnet import InceptionResNet
 from keras_models.cnn.multinput import MultiInputNeuralNet
 from preprocess.CapsPreprocessor import CapsPreprocessor
 from preprocess.DlibPreprocessor import DlibInputPreprocessor
 from preprocess.ImagePreprocessor import Preprocessor
 from preprocess.MultiPreprocessor import MultiInputPreprocessor
-from util.BasePostprocessor import PostProcessor
 from util.ClassifierWrapper import SevenEmotionsClassifier
+from util.PostProcessor import PostProcessor
 
 # from keras_models.lstm.dliblstm import DlibLSTMNet
 # from keras_models.lstm.lstm import LSTMNet
@@ -72,6 +73,11 @@ def run(shape_predictor_path, data_set_dir, data_out_dir, model_out_dir, net_typ
         neural_net = CapsNet(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps, epochs,
                              preprocessor, logger, session, lmd=0.5)
 
+    elif net_type == "incresnet":
+        preprocessor = MultiInputPreprocessor(classifier, input_shape=input_shape, augmentation=augmentation)
+        neural_net = InceptionResNet(data_out_dir, model_out_dir, net_type, input_shape, lr, batch_size, steps, epochs,
+                                     preprocessor, logger, session)
+
     # elif net_type == "imlstm":
     #     preprocessor = SequencialPreprocessor(classifier, input_shape=input_shape, augmentation=augmentation)(
     #         "dataset/ck-split")
@@ -109,7 +115,6 @@ def run(shape_predictor_path, data_set_dir, data_out_dir, model_out_dir, net_typ
             for i in range(len(faces)):
                 face = preprocessor.sanitize(faces[i])
                 predictions.append(neural_net.predict(face))
-            print("predicted")
 
             post_processor(img, rectangles, predictions)
             cv2.imshow("Image", img)
@@ -130,7 +135,7 @@ def run(shape_predictor_path, data_set_dir, data_out_dir, model_out_dir, net_typ
                     emotions = []
                     for i in range(len(faces)):
                         face = preprocessor.sanitize(faces[i]).astype(np.float32) / 255
-                        predictions = neural_net.predict(face.reshape(-1, 48, 48, 1))[0]
+                        predictions = neural_net.predict(face.reshape(-1, 64, 64, 1))[0]
                         print(predictions)
                         emotions.append(classifier.get_string(arg_max(predictions)))
 
@@ -194,7 +199,7 @@ if __name__ == "__main__":
     parser.add_argument("--augmentation", default=AUGMENTATION, type=bool)
 
     # Prediction Setup
-    parser.add_argument("--pred_data", default=PREDICTION_IMAGE, type=str)
+    parser.add_argument("--pred_data", default=PREDICTION_DATA, type=str)
     parser.add_argument("--pred_type", default=PREDICTION_TYPE, type=str)
 
     args = parser.parse_args()

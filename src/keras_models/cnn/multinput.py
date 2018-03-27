@@ -1,5 +1,6 @@
 import cv2
 import keras
+from keras import callbacks as cb
 from keras.layers import Input, Flatten, Dense, Conv2D, BatchNormalization, MaxPooling2D, Dropout, PReLU
 from keras.models import Model
 
@@ -79,69 +80,58 @@ class MultiInputNeuralNet(AbstractNet):
         dlib_points_layer = Flatten()(dlib_points_layer)
 
         dlib_points_dist_input_layer = Input(shape=(1, 68, 1))
-        dlib_points_dist_layer = BatchNormalization()(dlib_points_dist_input_layer)
         dlib_points_dist_layer = Conv2D(32, (1, 3), padding="valid", kernel_initializer="glorot_normal")(
-            dlib_points_dist_layer)
+            dlib_points_dist_input_layer)
         dlib_points_dist_layer = PReLU()(dlib_points_dist_layer)
-        dlib_points_dist_layer = BatchNormalization()(dlib_points_dist_layer)
         dlib_points_dist_layer = MaxPooling2D(pool_size=(1, 2))(dlib_points_dist_layer)
         dlib_points_dist_layer = Conv2D(32, (1, 1), padding="valid", kernel_initializer="glorot_normal") \
             (dlib_points_dist_layer)
         dlib_points_dist_layer = PReLU()(dlib_points_dist_layer)
-        dlib_points_dist_layer = BatchNormalization()(dlib_points_dist_layer)
         dlib_points_dist_layer = Conv2D(64, (1, 3), padding="valid", kernel_initializer="glorot_normal")(
             dlib_points_dist_layer)
         dlib_points_dist_layer = PReLU()(dlib_points_dist_layer)
-        dlib_points_dist_layer = BatchNormalization()(dlib_points_dist_layer)
         dlib_points_dist_layer = Conv2D(128, (1, 3), padding="valid", kernel_initializer="glorot_normal")(
             dlib_points_dist_layer)
         dlib_points_dist_layer = PReLU()(dlib_points_dist_layer)
-        dlib_points_dist_layer = BatchNormalization()(dlib_points_dist_layer)
 
         dlib_points_dist_layer = MaxPooling2D(pool_size=(1, 2))(dlib_points_dist_layer)
         dlib_points_dist_layer = Conv2D(256, (1, 3), padding="valid",
                                         kernel_initializer="glorot_normal")(dlib_points_dist_layer)
         dlib_points_dist_layer = PReLU()(dlib_points_dist_layer)
-        dlib_points_dist_layer = BatchNormalization()(dlib_points_dist_layer)
         dlib_points_dist_layer = Flatten()(dlib_points_dist_layer)
 
         dlib_points_angle_input_layer = Input(shape=(1, 68, 1))
-        dlib_points_angle_layer = BatchNormalization()(dlib_points_angle_input_layer)
         dlib_points_angle_layer = Conv2D(32, (1, 3), padding="valid", kernel_initializer="glorot_normal")(
-            dlib_points_angle_layer)
+            dlib_points_angle_input_layer)
         dlib_points_angle_layer = PReLU()(dlib_points_angle_layer)
-        dlib_points_angle_layer = BatchNormalization()(dlib_points_angle_layer)
         dlib_points_angle_layer = MaxPooling2D(pool_size=(1, 2))(dlib_points_angle_layer)
         dlib_points_angle_layer = Conv2D(32, (1, 1), padding="valid", kernel_initializer="glorot_normal") \
             (dlib_points_angle_layer)
         dlib_points_angle_layer = PReLU()(dlib_points_angle_layer)
-        dlib_points_angle_layer = BatchNormalization()(dlib_points_angle_layer)
         dlib_points_angle_layer = Conv2D(64, (1, 3), padding="valid", kernel_initializer="glorot_normal")(
             dlib_points_angle_layer)
         dlib_points_angle_layer = PReLU()(dlib_points_angle_layer)
-        dlib_points_angle_layer = BatchNormalization()(dlib_points_angle_layer)
         dlib_points_angle_layer = Conv2D(128, (1, 3), padding="valid", kernel_initializer="glorot_normal")(
             dlib_points_angle_layer)
         dlib_points_angle_layer = PReLU()(dlib_points_angle_layer)
-        dlib_points_angle_layer = BatchNormalization()(dlib_points_angle_layer)
         dlib_points_angle_layer = MaxPooling2D(pool_size=(1, 2))(dlib_points_angle_layer)
         dlib_points_angle_layer = Conv2D(256, (1, 3), padding="valid",
                                          kernel_initializer="glorot_normal")(dlib_points_angle_layer)
         dlib_points_angle_layer = PReLU()(dlib_points_angle_layer)
-        dlib_points_angle_layer = BatchNormalization()(dlib_points_angle_layer)
         dlib_points_angle_layer = Flatten()(dlib_points_angle_layer)
 
         merged_layers = keras.layers.concatenate(
             [image_layer, dlib_points_layer, dlib_points_dist_layer, dlib_points_angle_layer])
 
-        merged_layers = Dense(252)(merged_layers)
+        merged_layers = Dense(4096)(merged_layers)
         merged_layers = PReLU()(merged_layers)
-        merged_layers = Dense(1024)(merged_layers)
+        merged_layers = Dropout(0.1)(merged_layers)
+        merged_layers = Dense(4024)(merged_layers)
         merged_layers = PReLU()(merged_layers)
         merged_layers = Dense(2048)(merged_layers)
         merged_layers = PReLU()(merged_layers)
-        merged_layers = Dropout(0.4)(merged_layers)
-        merged_layers = Dense(512)(merged_layers)
+        merged_layers = Dropout(0.1)(merged_layers)
+        merged_layers = Dense(1024)(merged_layers)
         merged_layers = PReLU()(merged_layers)
         merged_layers = Dense(self.number_of_classes, activation='softmax')(merged_layers)
 
@@ -154,12 +144,20 @@ class MultiInputNeuralNet(AbstractNet):
         return self.model
 
     def train(self):
+        dir = self.model_out_dir + '/' + self.net_type + '/'
+        tb = cb.TensorBoard(log_dir=dir + '/tensorboard-logs',
+                            batch_size=self.batch_size)
+        checkpoint = cb.ModelCheckpoint(dir + '/weights.h5', mode='min', save_best_only=True,
+                                        save_weights_only=False, verbose=1)
+        lr_decay = cb.LearningRateScheduler(schedule=lambda epoch: self.learning_rate * (self.lr_decay ** epoch))
+
         self.preprocessor = self.preprocessor(self.data_dir)
         self.model.fit_generator(self.preprocessor.flow(), steps_per_epoch=self.steps_per_epoch,
                                  epochs=self.epochs,
                                  validation_data=([self.preprocessor.test_images, self.preprocessor.test_dpoints,
                                                    self.preprocessor.dpointsDists, self.preprocessor.dpointsAngles],
-                                                  self.preprocessor.test_image_emotions))
+                                                  self.preprocessor.test_image_emotions),
+                                 callbacks=[tb, checkpoint, lr_decay])
         score = self.model.evaluate(
             [self.preprocessor.test_images, self.preprocessor.test_dpoints, self.preprocessor.dpointsDists,
              self.preprocessor.dpointsAngles], self.preprocessor.test_image_emotions)

@@ -152,7 +152,8 @@ class DlibPointsInputNeuralNet(AbstractNet):
         Returns:
 
         """
-        assert face.shape == IMG_SIZE, "Face image size should be " + str(IMG_SIZE)
-        face = face.reshape(-1, 48, 48, 1)
-        emotions = self.model.predict(face)[0]
+        assert face.shape == self.input_shape[:-1], "Face image size should be " + str(self.input_shape[:-1])
+        face = face.reshape(-1, 64, 64, 1)
+        face = self.preprocessor.pre_predict(face)
+        emotions = self.model.predict(face)
         return emotions

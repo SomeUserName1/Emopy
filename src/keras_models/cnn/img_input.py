@@ -89,7 +89,7 @@ class ImageInputNeuralNet(AbstractNet):
         Returns:
 
         """
-        assert face.shape == IMG_SIZE, "Face image size should be " + str(IMG_SIZE)
+        assert face.shape == self.input_shape, "Face image size should be " + str(self.input_shape)
         face = face.reshape(-1, 64, 64, 1)
         face = face.astype(np.float32) / 255
         emotions = self.model.predict(face)

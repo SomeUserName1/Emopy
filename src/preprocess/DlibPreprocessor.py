@@ -3,8 +3,8 @@ from __future__ import print_function
 import dlib
 import numpy as np
 
+from preprocess.FeatureExtractor import DlibFeatureExtractor
 from preprocess.ImagePreprocessor import Preprocessor
-from preprocess.feature_extraction import DlibFeatureExtractor
 
 
 class DlibInputPreprocessor(Preprocessor):
@@ -69,3 +69,7 @@ class DlibInputPreprocessor(Preprocessor):
                 current_images, dpoints, dpointsDists, dpointsAngles = self.feature_extractor.extract(current_images)
                 current_emotions = np.eye(self.classifier.get_num_class())[current_emotions]
                 yield [dpoints, dpointsDists, dpointsAngles], current_emotions
+
+    def pre_predict(self, data):
+        _, pred_points, pred_dists, pred_angles = self.feature_extractor.extract(data)
+        return [pred_points, pred_dists, pred_angles]

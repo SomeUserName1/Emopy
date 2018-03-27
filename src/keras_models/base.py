@@ -35,11 +35,12 @@ class AbstractNet(object, metaclass=ABCMeta):
         self.input_shape = input_shape
         self.preprocessor = preprocessor
         self.number_of_classes = self.preprocessor.classifier.get_num_class()
-        print("base init", self.preprocessor)
         self.batch_size = batch_size
         self.learning_rate = learning_rate
         self.steps_per_epoch = steps_per_epoch
         self.epochs = epochs
+
+        self.lr_decay = 0.99
         self.model = None
 
         if not os.path.exists(os.path.join(model_out_dir, self.net_type)):
@@ -52,7 +53,7 @@ class AbstractNet(object, metaclass=ABCMeta):
     def init_model(self, session):
         if session == "'train'":
             self.model = self.build()
-        elif session == 'predict':
+        elif session == "'predict'":
             self.model = self.load_model()
         return self.model
 
@@ -122,12 +123,14 @@ class AbstractNet(object, metaclass=ABCMeta):
             raise Exception("no models created by now, run training first")
         else:
             model_number = np.fromfile(os.path.join(out_dir, "model_number.txt"),
-                                       dtype=int)
+                                       dtype=int) - 1
 
         model_file_name = self.net_type + "-" + str(model_number[0])
-        path = os.path.join(self.model_out_dir, self.net_type, model_file_name + ".json")
+        path = os.path.join(self.model_out_dir, self.net_type, model_file_name)
 
-        with open(path) as model_file:
+        with open(path + ".json") as model_file:
             model = model_from_json(model_file.read())
-            model.load_weights(path + ".h5")
-            return model
+
+        model.load_weights(path + ".h5")
+        print("loaded model")
+        return model
